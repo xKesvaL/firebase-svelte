@@ -8,7 +8,7 @@ _Maintained version of [SvelteFire](https://github.com/codediodeio/sveltefire). 
 
 `+page.svelte`
 
-```sveltehtml
+```svelte
 <script lang="ts">
   import { FirebaseApp, User, FireDoc, FireCollection, Realtime } from 'firebase-svelte';
   import { auth, firestore, realtimeDB } from './firebase.ts';
