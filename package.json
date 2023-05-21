@@ -1,6 +1,6 @@
 {
 	"name": "firebase-svelte",
-	"version": "0.1.0",
+	"version": "0.1.2",
 	"description": "Integrate Svelte stores with Firebase easily.",
 	"license": "MIT",
 	"scripts": {
@@ -51,5 +51,32 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module"
+	"type": "module",
+	"author": {
+		"email": "contact@kesval.com",
+		"name": "KesvaL",
+		"url": "https://kesval.com"
+	},
+	"keywords": [
+		"firebase",
+		"svelte",
+		"stores",
+		"sveltefire",
+		"sveltekit",
+		"firestore",
+		"realtime",
+		"database",
+		"auth",
+		"authentication",
+		"storage"
+	],
+	"homepage": "https://github.com/xKesvaL/firebase-svelte",
+	"bugs": {
+		"url": "https://github.com/xKesvaL/firebase-svelte/issues",
+		"email": "contact@kesval.com"
+	},
+	"repository": {
+		"url": "https://github.com/xKesvaL/firebase-svelte.git",
+		"type": "git"
+	}
 }
