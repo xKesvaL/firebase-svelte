@@ -97,7 +97,7 @@ export function fireCollectionStore<T>(
 
 	const collectionRef = typeof ref === 'string' ? collection(firestore, ref) : ref;
 
-	const { subscribe } = readable(startValue, (set) => {
+	const { subscribe } = readable<T[] | null>(startValue, (set) => {
 		unsubscribe = onSnapshot(collectionRef, (snapshot) => {
 			const data = snapshot.docs.map((doc) => {
 				return {
@@ -150,7 +150,7 @@ export function fireCollectionGroupStore<T>(
 
 	const collectionRef = typeof ref === 'string' ? collectionGroup(firestore, ref) : ref;
 
-	const { subscribe } = readable(startValue, (set) => {
+	const { subscribe } = readable<T[]>(startValue, (set) => {
 		unsubscribe = onSnapshot(collectionRef, (snapshot) => {
 			const data = snapshot.docs.map((doc) => {
 				return {
