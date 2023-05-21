@@ -1,5 +1,7 @@
 # Firebase-Svelte
 
+![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/xKesvaL/firebase-svelte?style=for-the-badge) ![Issues](https://img.shields.io/github/issues/xKesvaL/firebase-svelte?style=for-the-badge) ![License](https://img.shields.io/github/license/xKesvaL/firebase-svelte?style=for-the-badge)
+
 Use the power of Svelte stores with Firebase in a Component-based way. Here's how:
 
 _Maintained version of [SvelteFire](https://github.com/codediodeio/sveltefire). Since [SvelteFire](https://github.com/codediodeio/sveltefire) is rarely updated and has no support for realtimeDB nor answers any issues, I have decided to create this library and add features such as support for Realtime Database._
