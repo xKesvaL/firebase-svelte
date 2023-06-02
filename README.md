@@ -46,7 +46,7 @@ _Maintained version of [SvelteFire](https://github.com/codediodeio/sveltefire). 
 
 			<!-- 5. ❤️ Get the likes of the post with realtime -->
 			<Realtime ref={postRef.path + '/likes'} let:data={likes}>
-				️{likes.length} ❤️
+				️{likes} ❤️
 			</Realtime>
 		</FireDoc>
 	</User>
@@ -104,7 +104,7 @@ Firebase is a great tool for building apps with real-time data, and without havi
 > Hi {$user?.displayName}!
 > ```
 
-> `component-based` [See here](#stores)
+> `component-based` [See here](#components)
 >
 > ```svelte
 > <script lang="ts">
@@ -261,7 +261,7 @@ This store gives you the current user and listens to changes.
 
 ```svelte
 <script>
-  import { userStore } from 'sveltefire';
+  import { userStore } from 'firebase-svelte';
 
   const user = userStore(auth);
 </script>
@@ -280,7 +280,7 @@ Subscribe to realtime changes on a document or a collection. It will automatical
 
 ```svelte
 <script>
-  import { fireDocStore, fireCollectionStore } from 'sveltefire';
+  import { fireDocStore, fireCollectionStore } from 'firebase-svelte';
 
   const post = fireDocStore(firestore, 'posts/test');
 
@@ -313,7 +313,7 @@ Same as Firestore stores, but for Realtime Database.
 
 ```svelte
 <script>
-  import { realtimeDataStore } from 'sveltefire';
+  import { realtimeDataStore } from 'firebase-svelte';
 
   const likes = realtimeDataStore(realtime, 'posts/test/likes');
 </script>
