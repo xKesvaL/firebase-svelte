@@ -13,4 +13,4 @@ import {
 	// @ts-ignore
 } from '$lib/stores';
 
-export { FirebaseApp, User, FireDoc, FireCollection, userStore };
+export { FirebaseApp, User, FireDoc, FireCollection, userStore, realtimeDataStore, fireCollectionGroupStore, fireCollectionStore, fireDocStore };
