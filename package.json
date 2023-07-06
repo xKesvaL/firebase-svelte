@@ -28,7 +28,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"firebase": "^9.22.0",
+		"firebase": "^9.23.0",
 		"svelte": "^3.54.0"
 	},
 	"devDependencies": {
