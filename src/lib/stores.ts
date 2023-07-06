@@ -68,7 +68,7 @@ export function fireDocStore<T>(
 export function fireCollectionStore<T>(
 	firestore: Firestore | undefined,
 	ref: string | Query | CollectionReference,
-	startValue: T[] = []
+	startValue: T[] | undefined = undefined
 ) {
 	let unsubscribe: () => void;
 
@@ -97,7 +97,7 @@ export function fireCollectionStore<T>(
 
 	const collectionRef = typeof ref === 'string' ? collection(firestore, ref) : ref;
 
-	const { subscribe } = readable<T[] | null>(startValue, (set) => {
+	const { subscribe } = readable<T[] | undefined>(startValue, (set) => {
 		unsubscribe = onSnapshot(collectionRef, (snapshot) => {
 			const data = snapshot.docs.map((doc) => {
 				return {
