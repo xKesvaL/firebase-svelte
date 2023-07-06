@@ -1,6 +1,6 @@
 # Firebase-Svelte
 
-![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/xKesvaL/firebase-svelte?style=for-the-badge) ![Issues](https://img.shields.io/github/issues/xKesvaL/firebase-svelte?style=for-the-badge) ![License](https://img.shields.io/github/license/xKesvaL/firebase-svelte?style=for-the-badge)
+[![Version](https://img.shields.io/npm/v/firebase-svelte?style=for-the-badge)](https://www.npmjs.com/package/firebase-svelte) [![Issues](https://img.shields.io/github/issues/xKesvaL/firebase-svelte?style=for-the-badge)](https://github.com/xKesvaL/firebase-svelte/issues) [![License](https://img.shields.io/github/license/xKesvaL/firebase-svelte?style=for-the-badge)](https://github.com/xKesvaL/firebase-svelte/blob/main/LICENSE)
 
 Use the power of Svelte stores with Firebase in a Component-based way. Here's how:
 
