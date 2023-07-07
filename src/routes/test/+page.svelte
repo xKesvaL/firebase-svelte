@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { firestore, auth, realtimeDB } from './firebase.js';
 	import { signInAnonymously } from 'firebase/auth';
-	import { FireCollection, FireDoc, User, FirebaseApp } from '$lib';
+	import { Collection, Doc, User, FirebaseApp } from '$lib';
 	import { addDoc, collection, orderBy, query } from 'firebase/firestore';
 
 	async function addPost(uid: string) {
@@ -18,30 +18,30 @@
 </script>
 
 <FirebaseApp {auth} {firestore} {realtimeDB}>
-	<FireDoc ref="posts/test" startValue={{ content: 'sup' }} let:data={post}>
+	<Doc ref="posts/test" startValue={{ content: 'sup' }} let:data={post}>
 		{#if post}
 			<p>{post.content}</p>
 		{/if}
 		<div slot="loading">
 			<p>Loading...</p>
 		</div>
-	</FireDoc>
+	</Doc>
 
 	<User let:user>
 		<p>Hello {user?.uid}</p>
 
-		<FireDoc ref="posts/test" let:data={post}>
+		<Doc ref="posts/test" let:data={post}>
 			{#if post}
 				<p>{post.content}</p>
 			{/if}
 			<div slot="loading">
 				<p>Loading...</p>
 			</div>
-		</FireDoc>
+		</Doc>
 
 		<h1>Your Posts</h1>
 
-		<FireCollection ref={makeQuery(user.uid)} startValue={[]} let:data={posts} let:count>
+		<Collection ref={makeQuery(user.uid)} startValue={[]} let:data={posts} let:count>
 			<p>You've made {count} posts</p>
 
 			{#if posts}
@@ -53,7 +53,7 @@
 			{/if}
 
 			<button on:click={() => addPost(user.uid)}>Add Post</button>
-		</FireCollection>
+		</Collection>
 
 		<div slot="signedOut">
 			<p>Sign in to do stuff</p>
