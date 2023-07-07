@@ -7,7 +7,7 @@ Use the power of Svelte stores with Firebase in a Component-based way.
 - Svelte reactive components (that use stores)
 - TypeScript support
 - SvelteKit support
--
+- Firestore-lite helpers
 
 _Maintained version of [SvelteFire](https://github.com/codediodeio/sveltefire). Since [SvelteFire](https://github.com/codediodeio/sveltefire) is rarely updated and has no support for realtime nor answers any issues, I have decided to create this library and add features such as support for Realtime Database._
 

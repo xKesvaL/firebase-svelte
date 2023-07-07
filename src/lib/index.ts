@@ -9,7 +9,11 @@ import { createRealtimeDataStore } from '$lib/realtime/stores.js';
 
 import { createUserStore } from '$lib/auth/stores.js';
 
-import { createDocStore } from '$lib/firestore/stores.js';
+import {
+	createDocStore,
+	createCollectionStore,
+	createCollectionGroupStore
+} from '$lib/firestore/stores.js';
 
 import { addOnline, setOnline, updateOnline, deleteOnline } from '$lib/firestore/firestore-lite.js';
 
@@ -17,7 +21,7 @@ import { addOnline, setOnline, updateOnline, deleteOnline } from '$lib/firestore
 export { createUserStore };
 
 // Firestore Stores
-export { createDocStore };
+export { createDocStore, createCollectionStore, createCollectionGroupStore };
 
 // Realtime Stores
 export { createRealtimeDataStore };
