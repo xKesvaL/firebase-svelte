@@ -1,7 +1,6 @@
 import type { Auth, User } from 'firebase/auth';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { readable } from 'svelte/store';
-import { sdk } from '$lib/stores.js';
 
 /**
  * @param {Auth} auth - The Firebase Auth instance.

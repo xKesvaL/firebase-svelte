@@ -12,7 +12,7 @@ interface RealtimeStoreOptions<T> extends StoreOptions {
  * @description Important: Use this on the lowest level needed for watching changes. Don't put this on the root of your app, or you will get a lot of reads and your data will be enormous.
  * @param {Database} realtimeDB - The Firebase Realtime Database instance.
  * @param {string | DatabaseReference} ref - The path to the data.
- * @param {any} [startValue] - The initial value of the store.
+ * @param {RealtimeStoreOptions} [options] - The initial value of the store.
  * @returns A store with realtime data on given path.
  */
 export function createRealtimeDataStore<T>(
