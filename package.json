@@ -80,5 +80,12 @@
 	"repository": {
 		"url": "https://github.com/xKesvaL/firebase-svelte.git",
 		"type": "git"
+	},
+	"dependencies": {
+		"@kesval/design": "^1.0.0",
+		"audit": "^0.0.6",
+		"fix": "^0.0.6",
+		"mdsvex": "^0.11.0",
+		"sass": "^1.63.6"
 	}
 }

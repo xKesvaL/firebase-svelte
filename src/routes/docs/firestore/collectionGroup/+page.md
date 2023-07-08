@@ -1,0 +1,4 @@
+---
+title: "CollectionGroup"
+category: "firestore"
+---
