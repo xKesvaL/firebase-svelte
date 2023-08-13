@@ -11,8 +11,12 @@
 		default: {
 			data: (T & { [key: string]: any }) | null;
 			ref: DocumentReference | null;
+			error: Error | null;
 		};
 		loading: Record<string, never>;
+		before: Record<string, never>;
+		after: Record<string, never>;
+		fallback: Record<string, never>;
 	}
 
 	export let firestore: Firestore | undefined = $sdk?.firestore;

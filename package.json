@@ -1,6 +1,6 @@
 {
 	"name": "firebase-svelte",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Integrate Svelte stores with Firebase easily.",
 	"license": "MIT",
 	"scripts": {
@@ -31,21 +31,24 @@
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"peerDependencies": {
-		"firebase": "^9.23.0",
+		"firebase": "^10.1.0",
 		"svelte": ">=3.54.0"
 	},
 	"devDependencies": {
+		"@kesval/design": "^2.3.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.20.4",
-		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/kit": "^1.22.5",
+		"@sveltejs/package": "^2.2.1",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"mdsvex": "^0.11.0",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.1",
 		"publint": "^0.1.9",
+		"sass": "^1.65.1",
 		"svelte": "^4.0.0",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
@@ -55,7 +58,7 @@
 	"svelte": "./dist/index.js",
 	"type": "module",
 	"author": {
-		"email": "contact@kesval.com",
+		"email": "jabeddou@gmail.com",
 		"name": "KesvaL",
 		"url": "https://kesval.com"
 	},
@@ -80,12 +83,5 @@
 	"repository": {
 		"url": "https://github.com/xKesvaL/firebase-svelte.git",
 		"type": "git"
-	},
-	"dependencies": {
-		"@kesval/design": "^1.0.0",
-		"audit": "^0.0.6",
-		"fix": "^0.0.6",
-		"mdsvex": "^0.11.0",
-		"sass": "^1.63.6"
 	}
 }

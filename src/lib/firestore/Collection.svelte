@@ -6,10 +6,16 @@
 	interface $$Slots {
 		default: {
 			data: any[];
-			ref: CollectionReference | Query | null;
+			ref: CollectionReference | Query | undefined;
 			count: number;
+			error: Error | null;
+			first: any | null;
+			last: any | null;
 		};
 		loading: Record<string, never>;
+		before: Record<string, never>;
+		after: Record<string, never>;
+		fallback: Record<string, never>;
 	}
 
 	export let firestore: Firestore | undefined = $sdk?.firestore;
