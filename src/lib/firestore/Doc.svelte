@@ -1,7 +1,8 @@
 <!--suppress TypeScriptUnresolvedReference -->
 <script lang="ts">
 	import type { DocumentReference, Firestore } from 'firebase/firestore';
-	import { fireDocStore, sdk } from '$lib/stores';
+	import { createDocStore } from './stores.js';
+	import { sdk } from '$lib/stores.js';
 
 	// eslint-disable-next-line no-undef
 	type T = $$Generic<T>;
@@ -17,12 +18,24 @@
 	export let firestore: Firestore | undefined = $sdk?.firestore;
 	export let ref: string | DocumentReference;
 	export let startValue: T | undefined = undefined;
+	export let log = false;
+	export let once = false;
 
-	let store = fireDocStore(firestore, ref, startValue);
+	let store = createDocStore(firestore, ref, {
+		startValue,
+		log,
+		once
+	});
 </script>
 
-{#if $store !== undefined}
-	<slot data={$store} ref={store.ref} />
-{:else}
+<slot name="before" />
+
+{#if $store}
+	<slot data={$store} ref={store.ref} error={store.error} />
+{:else if store.loading}
 	<slot name="loading" />
+{:else}
+	<slot name="fallback" />
 {/if}
+
+<slot name="after" />

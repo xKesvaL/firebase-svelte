@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Auth, User } from 'firebase/auth';
-	import { sdk, userStore } from '$lib/stores';
+	import { createUserStore } from './stores.js';
+	import { sdk } from '$lib/stores.js';
 
 	interface $$Slots {
 		default: { user: User };
@@ -10,7 +11,7 @@
 
 	export let auth: Auth = $sdk.auth;
 
-	const user = userStore(auth);
+	const user = createUserStore(auth);
 
 	$: console.log($user);
 </script>
