@@ -11,8 +11,8 @@ dependencies:
 
 devDependencies:
   '@kesval/design':
-    specifier: ^2.3.1
-    version: 2.3.1(sass@1.68.0)
+    specifier: ^4.0.0
+    version: 4.0.0
   '@sveltejs/adapter-auto':
     specifier: ^2.0.0
     version: 2.1.0(@sveltejs/kit@1.25.1)
@@ -841,10 +841,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@kesval/design@2.3.1(sass@1.68.0):
-    resolution: {integrity: sha512-EUYMWeuQJ4WL9TgBU+nLGXXW/LTDl9oa75d13o10EIvKLvWt66jTD1IGRk97NLEtST/+p0A3RrzFYlrpo5bQ8Q==}
-    peerDependencies:
-      sass: ^1.63.6
+  /@kesval/design@4.0.0:
+    resolution: {integrity: sha512-wbfsGx612PGCn1rEf3GcqefRIeOIeIPc59qIDd9gIE7IG4LO8YBDycVXQaRSL6Lp2r44KzSqegyIclXhgiRxSQ==}
     dependencies:
       sass: 1.68.0
     dev: true

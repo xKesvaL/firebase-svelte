@@ -35,5 +35,9 @@ export const logger = (type: LogType, message: string, data?: unknown): void => 
 			break;
 	}
 
+	if (data) {
+		console.table(data);
+	}
+
 	return;
 };

@@ -2,14 +2,15 @@
 	import type { Auth } from 'firebase/auth';
 	import type { Firestore } from 'firebase/firestore';
 	import type { Database } from 'firebase/database';
-	import { sdk } from '$lib/sdk/stores.js';
+	import { setFirebaseContext } from './sdk/stores.js';
+	import type { FirebaseStorage } from 'firebase/storage';
 
 	export let auth: Auth;
 	export let firestore: Firestore | undefined = undefined;
+	export let rtdb: Database | undefined = undefined;
+	export let storage: FirebaseStorage | undefined = undefined;
 
-	export let realtime: Database | undefined = undefined;
-
-	sdk.set({ auth, firestore, realtime });
+	setFirebaseContext({ auth, firestore, rtdb, storage });
 </script>
 
 <slot />

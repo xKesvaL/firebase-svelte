@@ -2,10 +2,12 @@ import type { Firestore } from 'firebase/firestore';
 import type { Auth } from 'firebase/auth';
 import { getContext, setContext } from 'svelte';
 import type { FirebaseStorage } from 'firebase/storage';
+import type { Database } from 'firebase/database';
 
 export interface FirebaseSDKContext {
 	auth?: Auth;
 	firestore?: Firestore;
+	rtdb?: Database;
 	storage?: FirebaseStorage;
 }
 

@@ -35,7 +35,7 @@
 		"svelte": ">=3.54.0"
 	},
 	"devDependencies": {
-		"@kesval/design": "^2.3.1",
+		"@kesval/design": "^4.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.22.5",
 		"@sveltejs/package": "^2.2.1",
@@ -75,7 +75,7 @@
 		"authentication",
 		"storage"
 	],
-	"homepage": "https://firebase-svelte.vercel.app",
+	"homepage": "https://firebase-svelte.kesval.app",
 	"bugs": {
 		"url": "https://github.com/xKesvaL/firebase-svelte/issues",
 		"email": "contact@kesval.com"

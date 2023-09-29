@@ -23,8 +23,8 @@ interface DocStoreOptions<T> extends StoreOptions {
 	startValue?: T;
 }
 
-interface DocStore extends Omit<Writable<unknown | undefined | null>, 'set' | 'update'> {
-	ref: DocumentReference | null;
+interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
+	ref: DocumentReference<T> | null;
 	id: string;
 	loading: boolean;
 	error: Error | null;
@@ -42,7 +42,7 @@ export function createDocStore<T>(
 	firestore: Firestore | undefined,
 	ref: string | DocumentReference,
 	options: DocStoreOptions<T> = {}
-): DocStore {
+): DocStore<T> {
 	const { log, startValue, once } = options;
 	let unsubscribe: () => void;
 
@@ -107,7 +107,7 @@ export function createDocStore<T>(
 
 	return {
 		subscribe,
-		ref: docRef,
+		ref: docRef as DocumentReference<T>,
 		id: docRef.id,
 		get loading() {
 			return loading;
@@ -124,8 +124,8 @@ export function createDocStore<T>(
 	};
 }
 
-interface CollectionStore extends Readable<unknown> {
-	ref: CollectionReference | null | undefined;
+interface CollectionStore<T> extends Readable<T[]> {
+	ref: CollectionReference<T[]> | null | undefined;
 	id: string;
 	loading: boolean;
 	error: Error | null;
@@ -152,12 +152,12 @@ export function createCollectionStore<T>(
 	ref: string | CollectionReference,
 	queryConstraints: QueryConstraint[] = [],
 	options: CollectionStoreOptions<T> = {}
-): CollectionStore {
+): CollectionStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
 
 	if (!firestore) {
-		const { subscribe } = readable(startValue);
+		const { subscribe } = readable<T[]>(startValue);
 		const store = {
 			subscribe,
 			ref: undefined,
@@ -201,7 +201,7 @@ export function createCollectionStore<T>(
 			  };
 	};
 
-	const { subscribe } = writable<T[] | undefined>(startValue, (set) => {
+	const { subscribe } = writable<T[]>(startValue, (set) => {
 		unsubscribe = onSnapshot(
 			q,
 			(snapshot) => {
@@ -240,7 +240,7 @@ export function createCollectionStore<T>(
 
 	return {
 		subscribe,
-		ref: collectionRef,
+		ref: collectionRef as CollectionReference<T[]>,
 		id: collectionRef.id,
 		get loading() {
 			return loading;
@@ -254,8 +254,8 @@ export function createCollectionStore<T>(
 	};
 }
 
-interface CollectionGroupStore extends Readable<unknown> {
-	ref: Query<DocumentData, DocumentData> | null | undefined;
+interface CollectionGroupStore<T> extends Readable<T[]> {
+	ref: Query<T[], DocumentData> | null | undefined;
 	loading: boolean;
 	error: Error | null;
 }
@@ -270,12 +270,12 @@ export function createCollectionGroupStore<T>(
 	firestore: Firestore | undefined,
 	ref: string | Query,
 	options: CollectionStoreOptions<T> = {}
-): CollectionGroupStore {
+): CollectionGroupStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
 
 	if (!firestore) {
-		const { subscribe } = writable(startValue);
+		const { subscribe } = writable<T[]>(startValue);
 		const store = {
 			subscribe,
 			ref: undefined,
@@ -300,7 +300,7 @@ export function createCollectionGroupStore<T>(
 	let error: Error | null = null;
 	const collectionRef = typeof ref === 'string' ? collectionGroup(firestore, ref) : ref;
 
-	const { subscribe } = writable<T[] | undefined>(startValue, (set) => {
+	const { subscribe } = writable<T[]>(startValue, (set) => {
 		unsubscribe = onSnapshot(
 			collectionRef,
 			(snapshot) => {
@@ -334,7 +334,7 @@ export function createCollectionGroupStore<T>(
 
 	return {
 		subscribe,
-		ref: collectionRef,
+		ref: collectionRef as Query<T[], DocumentData>,
 		get loading() {
 			return loading;
 		},
