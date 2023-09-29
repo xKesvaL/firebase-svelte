@@ -4,13 +4,15 @@
 	import type { Database } from 'firebase/database';
 	import { setFirebaseContext } from './sdk/stores.js';
 	import type { FirebaseStorage } from 'firebase/storage';
+	import type { FirebaseApp } from 'firebase/app';
 
+	export let app: FirebaseApp;
 	export let auth: Auth;
 	export let firestore: Firestore | undefined = undefined;
 	export let rtdb: Database | undefined = undefined;
 	export let storage: FirebaseStorage | undefined = undefined;
 
-	setFirebaseContext({ auth, firestore, rtdb, storage });
+	setFirebaseContext({ app, auth, firestore, rtdb, storage });
 </script>
 
 <slot />
