@@ -2,7 +2,7 @@ import type { Database, DatabaseReference } from 'firebase/database';
 import { readable } from 'svelte/store';
 import { ref as getDbRef } from '@firebase/database';
 import { onValue } from 'firebase/database';
-import type { StoreOptions } from '$lib/stores.js';
+import type { StoreOptions } from '$lib/sdk/stores.js';
 
 interface RealtimeStoreOptions<T> extends StoreOptions {
 	startValue?: T;

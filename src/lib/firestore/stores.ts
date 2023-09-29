@@ -1,40 +1,53 @@
-import type { DocumentReference, Firestore, Query, QueryConstraint } from 'firebase/firestore';
-import { readable } from 'svelte/store';
+import type {
+	DocumentData,
+	DocumentReference,
+	Firestore,
+	Query,
+	QueryConstraint
+} from 'firebase/firestore';
+import { readable, type Readable, writable, type Writable } from 'svelte/store';
 import {
 	collection,
 	collectionGroup,
 	CollectionReference,
 	doc,
 	onSnapshot,
-	query
+	query,
+	setDoc,
+	updateDoc
 } from 'firebase/firestore';
-import type { StoreOptions } from '$lib/stores.js';
+import type { StoreOptions } from '$lib/types/index.js';
+import { logger } from '$lib/utils/logger.js';
 
-interface docStoreOptions<T> extends StoreOptions {
+interface DocStoreOptions<T> extends StoreOptions {
 	startValue?: T;
 }
 
-interface collectionStoreOptions<T> extends StoreOptions {
-	refField?: string;
-	startValue?: T[];
+interface DocStore extends Omit<Writable<unknown | undefined | null>, 'set' | 'update'> {
+	ref: DocumentReference | null;
+	id: string;
+	loading: boolean;
+	error: Error | null;
+	set: (value: unknown) => Promise<unknown>;
+	update: (value: unknown) => Promise<unknown>;
 }
 
 /**
  * @param {Firestore} firestore - The Firebase Firestore instance.
  * @param {string | DocumentReference} ref - The path to the document.
- * @param {docStoreOptions} [options] - The options for the store. See our docs
- * @returns A store with realtime data on given doc path.
+ * @param {DocStoreOptions} [options] - The options for the store. See our docs
+ * @returns {DocStore} A store with realtime data on given doc path.
  */
 export function createDocStore<T>(
 	firestore: Firestore | undefined,
 	ref: string | DocumentReference,
-	options: docStoreOptions<T> = {}
-) {
+	options: DocStoreOptions<T> = {}
+): DocStore {
 	const { log, startValue, once } = options;
 	let unsubscribe: () => void;
 
 	if (!firestore) {
-		const { subscribe } = readable(startValue);
+		const { subscribe } = writable(startValue);
 		const store = {
 			subscribe,
 			ref: null,
@@ -44,16 +57,20 @@ export function createDocStore<T>(
 			},
 			get error() {
 				return null;
+			},
+			set: async () => {
+				return;
+			},
+			update: async () => {
+				return;
 			}
 		};
+
 		if (!globalThis.window) {
 			return store;
 		}
-		console.warn(
-			'%c[FIREBASE-SV] %cFirestore was not initialized.',
-			'color: #ff3e00; font-weight: bold;',
-			'color: initial;'
-		);
+
+		logger('warn', 'Firestore was not initialized.');
 
 		return store;
 	}
@@ -62,23 +79,20 @@ export function createDocStore<T>(
 	let error: Error | null = null;
 	const docRef = typeof ref === 'string' ? doc(firestore, ref) : ref;
 
-	const { subscribe } = readable<T | null>(startValue, (set) => {
+	const { subscribe } = writable<T | null>(startValue, (set) => {
 		unsubscribe = onSnapshot(
 			docRef,
 			(snapshot) => {
 				const data = snapshot.data();
 				if (log) {
-					console.groupCollapsed(`[FIREBASE-SV] DocStore: ${snapshot.id}`);
-					console.log(`Path: ${docRef.path}`);
-					console.table(data);
-					console.groupEnd();
+					logger('debug', `DocStore: ${snapshot.id}`, data);
 				}
 
 				set((data as T) ?? null);
 				loading = false;
 			},
 			(err) => {
-				console.error(err);
+				logger('error', `${err.code} ${err.name}, ${err.message}`);
 				error = err;
 			}
 		);
@@ -100,23 +114,45 @@ export function createDocStore<T>(
 		},
 		get error() {
 			return error;
+		},
+		set: async (value) => {
+			return await setDoc(docRef, value);
+		},
+		update: async (value) => {
+			return await updateDoc(docRef, value as never);
 		}
 	};
+}
+
+interface CollectionStore extends Readable<unknown> {
+	ref: CollectionReference | null | undefined;
+	id: string;
+	loading: boolean;
+	error: Error | null;
+	meta: {
+		first: unknown;
+		last: unknown;
+	};
+}
+
+interface CollectionStoreOptions<T> extends StoreOptions {
+	refField?: string;
+	startValue?: T[];
 }
 
 /**
  * @param {Firestore} firestore - The Firebase Firestore instance.
  * @param {string | CollectionReference} ref - The path to the collection.
  * @param {QueryConstraint[]} [queryConstraints] - The query constraints.
- * @param {collectionStoreOptions} [options] - The options for the store. See our docs
- * @returns A store with realtime data on given collection path.
+ * @param {CollectionStoreOptions} [options] - The options for the store. See our docs
+ * @returns {CollectionStore} A store with realtime data on given collection path.
  */
 export function createCollectionStore<T>(
 	firestore: Firestore | undefined,
 	ref: string | CollectionReference,
 	queryConstraints: QueryConstraint[] = [],
-	options: collectionStoreOptions<T> = {}
-) {
+	options: CollectionStoreOptions<T> = {}
+): CollectionStore {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
 
@@ -140,11 +176,8 @@ export function createCollectionStore<T>(
 		if (!globalThis.window) {
 			return store;
 		}
-		console.warn(
-			'%c[FIREBASE-SV] %cFirestore was not initialized.',
-			'color: #ff3e00; font-weight: bold;',
-			'color: initial;'
-		);
+
+		logger('warn', 'Firestore was not initialized.');
 
 		return store;
 	}
@@ -168,7 +201,7 @@ export function createCollectionStore<T>(
 			  };
 	};
 
-	const { subscribe } = readable<T[] | undefined>(startValue, (set) => {
+	const { subscribe } = writable<T[] | undefined>(startValue, (set) => {
 		unsubscribe = onSnapshot(
 			q,
 			(snapshot) => {
@@ -180,19 +213,19 @@ export function createCollectionStore<T>(
 
 				if (log) {
 					const type = loading ? 'New Query' : 'Updated Query';
-					console.groupCollapsed(
-						`[FIREBASE-SV] CollectionStore: ${type} ${collectionRef.id} | ${data.length} hits`
+
+					logger(
+						'debug',
+						`CollectionStore: ${type} ${collectionRef.id} | ${data.length} hits`,
+						data
 					);
-					console.log(`Path: ${collectionRef.path}`);
-					console.table(data);
-					console.groupEnd();
 				}
 				set(data);
 				loading = false;
 				meta = calcMeta(data);
 			},
 			(err) => {
-				console.error(err);
+				logger('error', `${err.code} ${err.name}, ${err.message}`);
 				error = err;
 			}
 		);
@@ -221,26 +254,31 @@ export function createCollectionStore<T>(
 	};
 }
 
+interface CollectionGroupStore extends Readable<unknown> {
+	ref: Query<DocumentData, DocumentData> | null | undefined;
+	loading: boolean;
+	error: Error | null;
+}
+
 /**
  * @param {Firestore} firestore - The Firebase Firestore instance.
  * @param {string | Query} ref - The query to the collection group.
- * @param {collectionStoreOptions} [options] - The options for the store. See our docs
- * @returns A store with realtime data on given collection group path.
+ * @param {CollectionStoreOptions} [options] - The options for the store. See our docs
+ * @returns {CollectionGroupStore} A store with realtime data on given collection group path.
  */
 export function createCollectionGroupStore<T>(
 	firestore: Firestore | undefined,
 	ref: string | Query,
-	options: collectionStoreOptions<T> = {}
-) {
+	options: CollectionStoreOptions<T> = {}
+): CollectionGroupStore {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
 
 	if (!firestore) {
-		const { subscribe } = readable(startValue);
+		const { subscribe } = writable(startValue);
 		const store = {
 			subscribe,
 			ref: undefined,
-			id: '',
 			get loading() {
 				return false;
 			},
@@ -252,11 +290,8 @@ export function createCollectionGroupStore<T>(
 		if (!globalThis.window) {
 			return store;
 		}
-		console.warn(
-			'%c[FIREBASE-SV] %cFirestore was not initialized.',
-			'color: #ff3e00; font-weight: bold;',
-			'color: initial;'
-		);
+
+		logger('warn', 'Firestore was not initialized.');
 
 		return store;
 	}
@@ -265,7 +300,7 @@ export function createCollectionGroupStore<T>(
 	let error: Error | null = null;
 	const collectionRef = typeof ref === 'string' ? collectionGroup(firestore, ref) : ref;
 
-	const { subscribe } = readable<T[] | undefined>(startValue, (set) => {
+	const { subscribe } = writable<T[] | undefined>(startValue, (set) => {
 		unsubscribe = onSnapshot(
 			collectionRef,
 			(snapshot) => {
@@ -277,17 +312,14 @@ export function createCollectionGroupStore<T>(
 
 				if (log) {
 					const type = loading ? 'New Query' : 'Updated Query';
-					console.groupCollapsed(
-						`[FIREBASE-SV] CollectionGroupStore: ${type} | ${data.length} hits`
-					);
-					console.table(data);
-					console.groupEnd();
+
+					logger('debug', `CollectionGroupStore: ${type} | ${data.length} hits`, data);
 				}
 				set(data);
 				loading = false;
 			},
 			(err) => {
-				console.error(err);
+				logger('error', `${err.code} ${err.name}, ${err.message}`);
 				error = err;
 			}
 		);

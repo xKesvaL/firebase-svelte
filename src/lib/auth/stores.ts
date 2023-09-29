@@ -1,12 +1,15 @@
+import { logger } from '$lib/utils/logger.js';
 import type { Auth, User } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
-import { readable } from 'svelte/store';
+import { readable, type Readable } from 'svelte/store';
+
+type UserStore = Readable<User | null | undefined>;
 
 /**
  * @param {Auth} auth - The Firebase Auth instance.
- * @returns A (subscribe-only) store for the current user's data.
+ * @returns {UserStore} A store for the current user's data.
  */
-export function createUserStore(auth: Auth) {
+export function createUserStore(auth: Auth): UserStore {
 	let unsubscribe: () => void;
 
 	if (!auth) {
@@ -16,11 +19,8 @@ export function createUserStore(auth: Auth) {
 				subscribe
 			};
 		}
-		console.warn(
-			'%c[FIREBASE-SV] %cAuth was not initialized.',
-			'color: #ff3e00; font-weight: bold;',
-			'color: initial;'
-		);
+
+		logger('warn', 'Auth was not initialized.');
 
 		const { subscribe } = readable(null);
 		return {

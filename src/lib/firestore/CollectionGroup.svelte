@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Firestore, Query } from 'firebase/firestore';
 	import { createCollectionGroupStore } from './stores.js';
-	import { sdk } from '$lib/stores.js';
+	import { sdk } from '$lib/sdk/stores.js';
 
 	interface $$Slots {
 		default: {

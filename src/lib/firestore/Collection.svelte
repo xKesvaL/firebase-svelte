@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { CollectionReference, Firestore, Query, QueryConstraint } from 'firebase/firestore';
 	import { createCollectionStore } from './stores.js';
-	import { sdk } from '$lib/stores.js';
+	import { sdk } from '$lib/sdk/stores.js';
 
 	interface $$Slots {
 		default: {

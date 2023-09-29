@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createRealtimeDataStore } from './stores.js';
-	import { sdk } from '$lib/stores.js';
+	import { sdk } from '$lib/sdk/stores.js';
 	import type { Database, DatabaseReference } from 'firebase/database';
 
 	interface $$Slots {

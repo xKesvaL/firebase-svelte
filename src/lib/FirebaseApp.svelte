@@ -2,7 +2,7 @@
 	import type { Auth } from 'firebase/auth';
 	import type { Firestore } from 'firebase/firestore';
 	import type { Database } from 'firebase/database';
-	import { sdk } from '$lib/stores.js';
+	import { sdk } from '$lib/sdk/stores.js';
 
 	export let auth: Auth;
 	export let firestore: Firestore | undefined = undefined;

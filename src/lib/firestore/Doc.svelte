@@ -2,7 +2,7 @@
 <script lang="ts">
 	import type { DocumentReference, Firestore } from 'firebase/firestore';
 	import { createDocStore } from './stores.js';
-	import { sdk } from '$lib/stores.js';
+	import { sdk } from '$lib/sdk/stores.js';
 
 	// eslint-disable-next-line no-undef
 	type T = $$Generic<T>;
