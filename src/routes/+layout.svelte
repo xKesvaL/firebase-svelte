@@ -3,11 +3,13 @@
 	import '$docs/styles/inter.scss';
 	import '$docs/styles/poppins.scss';
 	import '$docs/styles/main.scss';
+	import '$docs/styles/codeHighlights.scss';
 	import '../app.postcss';
 
 	import { onNavigate } from '$app/navigation';
 	import Sidebar from '$docs/containers/layout/Sidebar.svelte';
 	import Header from '$docs/containers/layout/Header.svelte';
+	import Toasts from '$docs/containers/layout/Toasts.svelte';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -30,3 +32,5 @@
 		</main>
 	</div>
 </div>
+
+<Toasts />

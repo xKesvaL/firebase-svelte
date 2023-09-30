@@ -22,7 +22,9 @@
 
 <button class="theme-switcher" on:click={toggleTheme} data-theme={$theme} aria-controls="body">
 	<span class="visually-hidden">{$theme}</span>
-	<span class="label">Auto</span>
+	<span class="label">
+		{$theme === 'auto' ? 'Auto' : $theme === 'light' ? 'Light' : 'Dark'}
+	</span>
 	<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
 		<mask id="moon">
 			<rect x="0" y="0" width="100%" height="100%" fill="white" />
@@ -83,6 +85,12 @@
 			transform-origin: right;
 			transform: scaleX(0);
 			color: hsl(var(--foreground));
+			width: 40px;
+
+			@include mq(md) {
+				transform: scaleX(1);
+				opacity: 1;
+			}
 		}
 
 		#moon,
@@ -137,7 +145,6 @@
 			.label {
 				opacity: 1;
 				transform: scaleX(1);
-				max-width: 36px;
 			}
 			@media not all and (prefers-color-scheme: dark) {
 				@include light-icon;

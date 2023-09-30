@@ -18,6 +18,12 @@ declare global {
 	interface Document {
 		startViewTransition(updateCallback: () => Promise<void>): ViewTransition;
 	}
+
+	interface Window {
+		PKG_VERSION: string;
+	}
 }
+
+declare const APP_VERSION: string;
 
 export {};

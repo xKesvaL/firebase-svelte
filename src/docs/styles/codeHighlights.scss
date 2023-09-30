@@ -1,0 +1,52 @@
+.token {
+	.keyword {
+		color: #a277ff;
+	}
+
+	.operator {
+		color: #a277ff;
+	}
+
+	.punctuation {
+		color: #ffca85;
+	}
+
+	.function {
+		color: #ffca85;
+	}
+
+	.string {
+		color: #61ffca;
+	}
+
+	&.comment,
+	.comment {
+		color: #6d6d6d;
+	}
+
+	&.tag {
+		.tag {
+			.punctuation {
+				color: #ffca85;
+			}
+
+			color: #a277ff;
+		}
+	}
+
+	&.attr-name {
+		color: #f694ff;
+	}
+
+	&.attr-value {
+		.punctuation.attr-equals {
+			color: #f694ff;
+		}
+
+		.punctuation {
+			color: #61ffca;
+		}
+
+		color: #61ffca;
+	}
+}

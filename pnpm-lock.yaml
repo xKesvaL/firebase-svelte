@@ -10,6 +10,9 @@ dependencies:
     version: 10.4.0
 
 devDependencies:
+  '@formkit/auto-animate':
+    specifier: ^0.8.0
+    version: 0.8.0
   '@kesval/design':
     specifier: ^4.1.2
     version: 4.1.2
@@ -22,6 +25,9 @@ devDependencies:
   '@sveltejs/package':
     specifier: ^2.2.2
     version: 2.2.2(svelte@4.2.1)(typescript@5.2.2)
+  '@types/prismjs':
+    specifier: ^1.26.1
+    version: 1.26.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.7.3
     version: 6.7.3(@typescript-eslint/parser@6.7.3)(eslint@8.50.0)(typescript@5.2.2)
@@ -67,6 +73,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.5.4
     version: 0.5.4(prettier-plugin-svelte@3.0.3)(prettier@3.0.3)
+  prismjs:
+    specifier: ^1.29.0
+    version: 1.29.0
   publint:
     specifier: ^0.2.3
     version: 0.2.3
@@ -824,6 +833,10 @@ packages:
     resolution: {integrity: sha512-qprfWkn82Iw821mcKofJ5Pk9wgioHicxcQMxx+5zt5GSKoqdWvgG5AxVmpmUUjzTLPVSH5auBrhI93Deayn/DA==}
     dev: true
 
+  /@formkit/auto-animate@0.8.0:
+    resolution: {integrity: sha512-G8f7489ka0mWyi+1IEZT+xgIwcpWtRMmE2x+IrVoQ+KM1cP6VDj/TbujZjwxdb0P8w8b16/qBfViRmydbYHwMw==}
+    dev: true
+
   /@grpc/grpc-js@1.9.4:
     resolution: {integrity: sha512-oEnzYiDuEsBydZBtP84BkpduLsE1nSAO4KrhTLHRzNrIQE647fhchmosTQsJdCo8X9zBBt+l5+fNk+m/yCFJ/Q==}
     engines: {node: ^8.13.0 || >=10.10.0}
@@ -1085,6 +1098,10 @@ packages:
   /@types/node@20.7.1:
     resolution: {integrity: sha512-LT+OIXpp2kj4E2S/p91BMe+VgGX2+lfO+XTpfXhh+bCk2LkQtHZSub8ewFBMGP5ClysPjTDFa4sMI8Q3n4T0wg==}
     dev: false
+
+  /@types/prismjs@1.26.1:
+    resolution: {integrity: sha512-Q7jDsRbzcNHIQje15CS/piKhu6lMLb9jwjxSfEIi4KcFKXW23GoJMkwQiJ8VObyfx+VmUaDcJxXaWN+cTCjVog==}
+    dev: true
 
   /@types/pug@2.0.7:
     resolution: {integrity: sha512-I469DU0UXNC1aHepwirWhu9YKg5fkxohZD95Ey/5A7lovC+Siu+MCLffva87lnfThaOrw9Vb1DUN5t55oULAAw==}

@@ -2,15 +2,17 @@
 	import { ROUTES } from '$docs/config';
 	import { sidebarShown } from '$docs/stores/sidebar.js';
 	import { Button } from '$docs/ui/button';
+	import { Input } from '$docs/ui/input';
 	import { Separator } from '$docs/ui/separator/index.js';
 </script>
 
 <aside
 	class="fixed {$sidebarShown
 		? 'translate-x-0'
-		: '-translate-x-full'} bottom-0 left-0 top-16 flex w-screen flex-shrink-0 flex-col overflow-y-scroll bg-card p-4 shadow-xl shadow-foreground/25 transition-transform lg:w-80 lg:translate-x-0"
+		: '-translate-x-full'} bottom-0 left-0 top-20 z-10 flex w-screen flex-shrink-0 flex-col overflow-y-scroll bg-card p-4 shadow-xl shadow-foreground/25 transition-transform lg:w-80 lg:translate-x-0"
 	style="view-transition-name: sidebar;"
 >
+	<Input type="search" placeholder="Search" class="mb-4 md:hidden" />
 	<div class="flex flex-col">
 		<h2 class="mb-2 text-xl">Guides</h2>
 		<Button
