@@ -10,7 +10,7 @@
 </script>
 
 <header
-	class="sticky left-0 right-0 top-0 flex min-h-[5rem] items-center gap-2 bg-card p-4 shadow-lg shadow-foreground/10"
+	class="sticky left-0 right-0 top-0 z-10 flex min-h-[5rem] items-center gap-2 bg-card p-4 shadow-lg shadow-foreground/10"
 	style="view-transition-name: header;"
 >
 	<Button
