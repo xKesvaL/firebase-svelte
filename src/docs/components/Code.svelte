@@ -54,7 +54,7 @@
 			height: 0.5rem;
 		}
 
-		font-size: 0.6rem;
+		font-size: 0.55rem;
 
 		@include mq(xs) {
 			font-size: var(--fs-200);
