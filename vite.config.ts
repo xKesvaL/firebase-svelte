@@ -12,6 +12,6 @@ export default defineConfig({
 		}
 	},
 	define: {
-		PKG_VERSION: JSON.stringify(version)
+		__PKG_VERSION__: JSON.stringify(version)
 	}
 });

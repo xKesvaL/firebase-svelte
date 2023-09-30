@@ -27,7 +27,7 @@
 	<Button variant="link" class="h-auto p-0 text-base text-foreground lg:text-lg" href={ROUTES.home}>
 		<span>🔥 Firebase Svelte</span>
 	</Button>
-	<Badge>{typeof window === 'object' ? window.PKG_VERSION : '...'}</Badge>
+	<Badge>{typeof window === 'object' ? __PKG_VERSION__ : '...'}</Badge>
 
 	<div class="ml-auto flex items-center gap-4">
 		<Input type="search" placeholder="Search" class="hidden md:flex" />
