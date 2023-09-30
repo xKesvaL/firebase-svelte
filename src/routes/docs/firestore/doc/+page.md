@@ -1,4 +1,0 @@
----
-title: "Doc"
-category: "firestore"
----
