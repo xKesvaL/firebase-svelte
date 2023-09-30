@@ -32,6 +32,16 @@ import {
 	createRemoteConfigValueStore
 } from '$lib/remoteConfig/stores.js';
 
+// cloud storage
+import DownloadUrl from '$lib/storage/DownloadUrl.svelte';
+import StorageList from '$lib/storage/StorageList.svelte';
+import UploadTask from '$lib/storage/UploadTask.svelte';
+import {
+	createStorageListStore,
+	createDownloadUrlStore,
+	createUploadTaskStore
+} from '$lib/storage/stores.js';
+
 // User Stores
 export { createUserStore };
 
@@ -50,6 +60,9 @@ export {
 	createRemoteConfigValueStore
 };
 
+// Cloud Storage Stores
+export { createStorageListStore, createDownloadUrlStore, createUploadTaskStore };
+
 // Components
 export {
 	FirebaseApp,
@@ -67,5 +80,9 @@ export {
 	RemoteConfigBoolean,
 	RemoteConfigNumber,
 	RemoteConfigString,
-	RemoteConfigValue
+	RemoteConfigValue,
+	// Cloud Storage,
+	DownloadUrl,
+	StorageList,
+	UploadTask
 };
