@@ -41,16 +41,20 @@
 		"@sveltejs/package": "^2.2.1",
 		"@typescript-eslint/eslint-plugin": "^6.7.3",
 		"@typescript-eslint/parser": "^6.7.3",
+		"autoprefixer": "^10.4.14",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.30.0",
 		"mdsvex": "^0.11.0",
+		"postcss": "^8.4.24",
+		"postcss-load-config": "^4.0.1",
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",
 		"publint": "^0.2.3",
 		"sass": "^1.65.1",
 		"svelte": "^4.0.0",
 		"svelte-check": "^3.4.3",
+		"tailwindcss": "^3.3.2",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0"
@@ -83,5 +87,11 @@
 	"repository": {
 		"url": "https://github.com/xKesvaL/firebase-svelte.git",
 		"type": "git"
+	},
+	"dependencies": {
+		"clsx": "^2.0.0",
+		"lucide-svelte": "^0.279.0",
+		"tailwind-merge": "^1.14.0",
+		"tailwind-variants": "^0.1.14"
 	}
 }
