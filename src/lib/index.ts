@@ -42,29 +42,28 @@ import {
 	createUploadTaskStore
 } from '$lib/storage/stores.js';
 
-// User Stores
-export { createUserStore };
-
-// Firestore Stores
-export { createDocStore, createCollectionStore, createCollectionGroupStore };
-
-// Realtime Stores
-export { createNodeStore, createNodeListStore };
-
-// Remote Config Stores
 export {
+	// User Stores
+	createUserStore,
+	// Firestore Stores
+	createDocStore,
+	createCollectionStore,
+	createCollectionGroupStore,
+	// Realtime Stores
+	createNodeStore,
+	createNodeListStore,
+	// Remote Config Stores
 	createRemoteConfigActivationStore,
 	createRemoteConfigBooleanStore,
 	createRemoteConfigNumberStore,
 	createRemoteConfigStringStore,
-	createRemoteConfigValueStore
-};
+	createRemoteConfigValueStore,
+	// Cloud Storage Stores
+	createStorageListStore,
+	createDownloadUrlStore,
+	createUploadTaskStore,
 
-// Cloud Storage Stores
-export { createStorageListStore, createDownloadUrlStore, createUploadTaskStore };
-
-// Components
-export {
+	// Components
 	FirebaseApp,
 	// Auth
 	User,

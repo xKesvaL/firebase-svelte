@@ -35,25 +35,31 @@
 		"svelte": ">=3.54.0"
 	},
 	"devDependencies": {
-		"@kesval/design": "^4.0.0",
+		"@kesval/design": "^4.1.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.22.5",
-		"@sveltejs/package": "^2.2.1",
+		"@sveltejs/kit": "^1.25.1",
+		"@sveltejs/package": "^2.2.2",
 		"@typescript-eslint/eslint-plugin": "^6.7.3",
 		"@typescript-eslint/parser": "^6.7.3",
 		"autoprefixer": "^10.4.14",
+		"bits-ui": "^0.5.7",
+		"clsx": "^2.0.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"lucide-svelte": "^0.279.0",
 		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.24",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.5.4",
 		"publint": "^0.2.3",
 		"sass": "^1.65.1",
-		"svelte": "^4.0.0",
-		"svelte-check": "^3.4.3",
+		"svelte": "^4.2.1",
+		"svelte-check": "^3.5.2",
+		"tailwind-merge": "^1.14.0",
+		"tailwind-variants": "^0.1.14",
 		"tailwindcss": "^3.3.2",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
@@ -69,29 +75,25 @@
 	"keywords": [
 		"firebase",
 		"svelte",
+		"firebase-svelte",
 		"stores",
-		"sveltefire",
 		"sveltekit",
 		"firestore",
 		"realtime",
 		"database",
 		"auth",
 		"authentication",
+		"remote-config",
+		"remote config",
 		"storage"
 	],
 	"homepage": "https://firebase-svelte.kesval.app",
 	"bugs": {
 		"url": "https://github.com/xKesvaL/firebase-svelte/issues",
-		"email": "contact@kesval.com"
+		"email": "jabeddou@gmail.com"
 	},
 	"repository": {
 		"url": "https://github.com/xKesvaL/firebase-svelte.git",
 		"type": "git"
-	},
-	"dependencies": {
-		"clsx": "^2.0.0",
-		"lucide-svelte": "^0.279.0",
-		"tailwind-merge": "^1.14.0",
-		"tailwind-variants": "^0.1.14"
 	}
 }
