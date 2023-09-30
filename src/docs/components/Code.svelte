@@ -24,7 +24,7 @@
 </script>
 
 <div
-	class="relative flex-1 overflow-x-auto rounded-lg bg-black p-4 text-white shadow-2xl shadow-primary/10"
+	class="relative flex-1 overflow-x-auto rounded-lg bg-black p-2 text-white shadow-2xl shadow-primary/10 md:p-4"
 >
 	<header class="flex items-center">
 		<div class="flex flex-1 gap-2">
@@ -38,12 +38,17 @@
 		<div class="flex-1"></div>
 	</header>
 	<div
-		class="code p-2 pb-0 font-mono language-{language} w-full overflow-x-auto whitespace-pre"
+		class="code py-2 pb-0 font-mono md:p-2 language-{language} w-full overflow-x-auto whitespace-pre"
 		bind:this={code}
 	>
 		<slot />
 	</div>
-	<Button class="absolute right-2 top-2 p-2" variant="ghost" size="icon" on:click={copyToClipboard}>
+	<Button
+		class="absolute right-0 top-0 p-2 md:right-2 md:top-2"
+		variant="ghost"
+		size="icon"
+		on:click={copyToClipboard}
+	>
 		<IconCopy />
 	</Button>
 </div>
@@ -54,7 +59,7 @@
 			height: 0.5rem;
 		}
 
-		font-size: 0.55rem;
+		font-size: 0.6rem;
 
 		@include mq(xs) {
 			font-size: var(--fs-200);
