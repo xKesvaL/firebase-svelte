@@ -1,40 +1,37 @@
-<script lang="ts">
+<script lang="ts" generics="Data extends CollectionReference">
+	import { getFirebaseContext } from '$lib/sdk/stores.js';
+
 	import type { CollectionReference, Firestore, Query, QueryConstraint } from 'firebase/firestore';
 	import { createCollectionStore } from './stores.js';
-	import { sdk } from '$lib/stores.js';
 
 	interface $$Slots {
 		default: {
 			data: any[];
-			ref: CollectionReference | Query | undefined;
+			ref: CollectionReference<Data[]> | null | undefined;
 			count: number;
 			error: Error | null;
 			first: any | null;
 			last: any | null;
 		};
 		loading: Record<string, never>;
-		before: Record<string, never>;
-		after: Record<string, never>;
 		fallback: Record<string, never>;
 	}
 
-	export let firestore: Firestore | undefined = $sdk?.firestore;
+	export let firestore: Firestore | undefined = getFirebaseContext().firestore;
 	export let ref: string | CollectionReference;
 	export let queryConstraints: QueryConstraint[] = [];
 	export let log = false;
-	export let startValue: any = undefined;
+	export let startValue: Data[] = [];
 	export let once = false;
 	export let refField: undefined | string = undefined;
 
-	let store = createCollectionStore(firestore, ref, queryConstraints, {
+	let store = createCollectionStore<Data>(firestore, ref, queryConstraints, {
 		startValue,
 		log,
 		once,
 		refField
 	});
 </script>
-
-<slot name="before" />
 
 {#if $store}
 	<slot
@@ -50,5 +47,3 @@
 {:else}
 	<slot name="fallback" />
 {/if}
-
-<slot name="after" />

@@ -1,4 +1,0 @@
----
-title: "Collection"
-category: "firestore"
----

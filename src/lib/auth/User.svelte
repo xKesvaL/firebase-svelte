@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Auth, User } from 'firebase/auth';
 	import { createUserStore } from './stores.js';
-	import { sdk } from '$lib/stores.js';
+	import { getFirebaseContext } from '$lib/sdk/stores.js';
 
 	interface $$Slots {
 		default: { user: User };
@@ -9,11 +9,9 @@
 		loading: Record<string, never>;
 	}
 
-	export let auth: Auth = $sdk.auth;
+	export let auth: Auth = getFirebaseContext().auth!;
 
 	const user = createUserStore(auth);
-
-	$: console.log($user);
 </script>
 
 {#if $user}
