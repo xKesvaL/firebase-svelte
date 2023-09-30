@@ -4,7 +4,7 @@
 	"description": "Integrate Svelte stores with Firebase easily.",
 	"license": "MIT",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
