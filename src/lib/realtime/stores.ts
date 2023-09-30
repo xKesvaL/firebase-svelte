@@ -5,11 +5,11 @@ import { onValue } from 'firebase/database';
 import type { StoreOptions } from '$lib/types/index.js';
 import { logger } from '$lib/utils/logger.js';
 
-interface RealtimeStoreOptions<T> extends StoreOptions {
+export interface RealtimeStoreOptions<T> extends StoreOptions {
 	startValue?: T;
 }
 
-interface NodeStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
+export interface NodeStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
 	ref: DatabaseReference | null;
 	key: string | null;
 	loading: boolean;
@@ -25,7 +25,7 @@ interface NodeStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'upd
  * @param {RealtimeStoreOptions<T>} [options] - The initial value of the store.
  * @returns {NodeStore<T>} A store with realtime data on given path.
  */
-export function createNodeStore<T>(
+export function createNodeStore<T = unknown>(
 	rtdb: Database | undefined,
 	ref: string | DatabaseReference,
 	options: RealtimeStoreOptions<T> = {}
@@ -110,7 +110,7 @@ export function createNodeStore<T>(
 	};
 }
 
-interface NodeListStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
+export interface NodeListStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
 	ref: DatabaseReference | null;
 	key: string | null;
 	loading: boolean;
@@ -124,7 +124,7 @@ interface NodeListStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 
  * @param {RealtimeStoreOptions<T>} [options] - The initial value of the store.
  * @returns {NodeListStore<T>} A store with realtime data on given path.
  */
-export function createNodeListStore<T>(
+export function createNodeListStore<T = unknown>(
 	rtdb: Database | undefined,
 	ref: string | DatabaseReference,
 	options: RealtimeStoreOptions<T> = {}

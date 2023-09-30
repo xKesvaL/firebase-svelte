@@ -1,23 +1,36 @@
 import FirebaseApp from './FirebaseApp.svelte';
 // auth
 import User from '$lib/auth/User.svelte';
+import { createUserStore } from '$lib/auth/stores.js';
+
 // firestore
 import Doc from '$lib/firestore/Doc.svelte';
 import Collection from '$lib/firestore/Collection.svelte';
 import CollectionGroup from '$lib/firestore/CollectionGroup.svelte';
-// rtdb
-import Node from '$lib/realtime/Node.svelte';
-import NodeList from '$lib/realtime/NodeList.svelte';
-
-import { createNodeStore, createNodeListStore } from '$lib/realtime/stores.js';
-
-import { createUserStore } from '$lib/auth/stores.js';
-
 import {
 	createDocStore,
 	createCollectionStore,
 	createCollectionGroupStore
 } from '$lib/firestore/stores.js';
+
+// rtdb
+import Node from '$lib/realtime/Node.svelte';
+import NodeList from '$lib/realtime/NodeList.svelte';
+import { createNodeStore, createNodeListStore } from '$lib/realtime/stores.js';
+
+// remote config
+import RemoteConfig from '$lib/remoteConfig/RemoteConfig.svelte';
+import RemoteConfigBoolean from '$lib/remoteConfig/RemoteConfigBoolean.svelte';
+import RemoteConfigNumber from '$lib/remoteConfig/RemoteConfigNumber.svelte';
+import RemoteConfigString from '$lib/remoteConfig/RemoteConfigString.svelte';
+import RemoteConfigValue from '$lib/remoteConfig/RemoteConfigValue.svelte';
+import {
+	createRemoteConfigActivationStore,
+	createRemoteConfigBooleanStore,
+	createRemoteConfigNumberStore,
+	createRemoteConfigStringStore,
+	createRemoteConfigValueStore
+} from '$lib/remoteConfig/stores.js';
 
 // User Stores
 export { createUserStore };
@@ -27,6 +40,15 @@ export { createDocStore, createCollectionStore, createCollectionGroupStore };
 
 // Realtime Stores
 export { createNodeStore, createNodeListStore };
+
+// Remote Config Stores
+export {
+	createRemoteConfigActivationStore,
+	createRemoteConfigBooleanStore,
+	createRemoteConfigNumberStore,
+	createRemoteConfigStringStore,
+	createRemoteConfigValueStore
+};
 
 // Components
 export {
@@ -39,5 +61,11 @@ export {
 	CollectionGroup,
 	// Realtime
 	Node,
-	NodeList
+	NodeList,
+	// Remote Config
+	RemoteConfig,
+	RemoteConfigBoolean,
+	RemoteConfigNumber,
+	RemoteConfigString,
+	RemoteConfigValue
 };

@@ -19,11 +19,11 @@ import {
 import type { StoreOptions } from '$lib/types/index.js';
 import { logger } from '$lib/utils/logger.js';
 
-interface DocStoreOptions<T> extends StoreOptions {
+export interface DocStoreOptions<T> extends StoreOptions {
 	startValue?: T;
 }
 
-interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
+export interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
 	ref: DocumentReference<T> | null;
 	id: string;
 	loading: boolean;
@@ -38,7 +38,7 @@ interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'upda
  * @param {DocStoreOptions} [options] - The options for the store. See our docs
  * @returns {DocStore} A store with realtime data on given doc path.
  */
-export function createDocStore<T>(
+export function createDocStore<T = unknown>(
 	firestore: Firestore | undefined,
 	ref: string | DocumentReference,
 	options: DocStoreOptions<T> = {}
@@ -124,7 +124,7 @@ export function createDocStore<T>(
 	};
 }
 
-interface CollectionStore<T> extends Readable<T[]> {
+export interface CollectionStore<T> extends Readable<T[]> {
 	ref: CollectionReference<T[]> | null | undefined;
 	id: string;
 	loading: boolean;
@@ -135,7 +135,7 @@ interface CollectionStore<T> extends Readable<T[]> {
 	};
 }
 
-interface CollectionStoreOptions<T> extends StoreOptions {
+export interface CollectionStoreOptions<T> extends StoreOptions {
 	refField?: string;
 	startValue?: T[];
 }
@@ -147,7 +147,7 @@ interface CollectionStoreOptions<T> extends StoreOptions {
  * @param {CollectionStoreOptions} [options] - The options for the store. See our docs
  * @returns {CollectionStore} A store with realtime data on given collection path.
  */
-export function createCollectionStore<T>(
+export function createCollectionStore<T = unknown>(
 	firestore: Firestore | undefined,
 	ref: string | CollectionReference,
 	queryConstraints: QueryConstraint[] = [],
@@ -254,7 +254,7 @@ export function createCollectionStore<T>(
 	};
 }
 
-interface CollectionGroupStore<T> extends Readable<T[]> {
+export interface CollectionGroupStore<T> extends Readable<T[]> {
 	ref: Query<T[], DocumentData> | null | undefined;
 	loading: boolean;
 	error: Error | null;
@@ -266,7 +266,7 @@ interface CollectionGroupStore<T> extends Readable<T[]> {
  * @param {CollectionStoreOptions} [options] - The options for the store. See our docs
  * @returns {CollectionGroupStore} A store with realtime data on given collection group path.
  */
-export function createCollectionGroupStore<T>(
+export function createCollectionGroupStore<T = unknown>(
 	firestore: Firestore | undefined,
 	ref: string | Query,
 	options: CollectionStoreOptions<T> = {}
