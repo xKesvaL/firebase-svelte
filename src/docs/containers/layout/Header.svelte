@@ -20,7 +20,10 @@
 	>
 		<IconMenu2 />
 	</Button>
-	hi from header
+
+	<Button variant="link" class="h-auto p-0 text-lg text-foreground">
+		<span>🔥 Firebase Svelte</span>
+	</Button>
 
 	<div class="ml-auto">
 		<ThemeSwitcher />
