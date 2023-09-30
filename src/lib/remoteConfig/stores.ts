@@ -93,7 +93,7 @@ export function createRemoteConfigActivationStore(
  * @param {RemoteConfigStoreOptions<T>} options the store options
  * @returns {RemoteConfigStore<T>} a store with the remote config value
  */
-export function createRemoteConfigValueStore<T>(
+export function createRemoteConfigValueStore<T = unknown>(
 	remoteConfig: RemoteConfig,
 	key: string,
 	options: RemoteConfigStoreOptions<T> = {}
