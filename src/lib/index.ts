@@ -1,4 +1,7 @@
+// sdk
 import FirebaseApp from './FirebaseApp.svelte';
+import { getFirebaseContext, setFirebaseContext, updateFirebaseContext } from '$lib/sdk/stores.js';
+
 // auth
 import User from '$lib/auth/User.svelte';
 import { createUserStore } from '$lib/auth/stores.js';
@@ -43,6 +46,10 @@ import {
 } from '$lib/storage/stores.js';
 
 export {
+	// SDK Context
+	getFirebaseContext,
+	setFirebaseContext,
+	updateFirebaseContext,
 	// User Stores
 	createUserStore,
 	// Firestore Stores
@@ -63,7 +70,7 @@ export {
 	createDownloadUrlStore,
 	createUploadTaskStore,
 
-	// Components
+	// SDK
 	FirebaseApp,
 	// Auth
 	User,

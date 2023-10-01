@@ -1,6 +1,6 @@
 {
 	"name": "firebase-svelte",
-	"version": "2.0.0-alpha0",
+	"version": "2.0.0-alpha1",
 	"description": "Integrate Svelte stores with Firebase easily.",
 	"license": "MIT",
 	"scripts": {
