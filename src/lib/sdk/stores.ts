@@ -3,14 +3,14 @@ import type { Auth } from 'firebase/auth';
 import { getContext, setContext } from 'svelte';
 import type { FirebaseStorage } from 'firebase/storage';
 import type { Database } from 'firebase/database';
-import type { FirebaseApp } from 'firebase/app';
+import type { RemoteConfig } from 'firebase/remote-config';
 
 export interface FirebaseSDKContext {
-	app?: FirebaseApp;
 	auth?: Auth;
 	firestore?: Firestore;
 	rtdb?: Database;
 	storage?: FirebaseStorage;
+	remoteConfig?: RemoteConfig;
 }
 
 export const contextKey = 'firebase-svelte-sdk';
@@ -24,4 +24,18 @@ export function setFirebaseContext(sdks: FirebaseSDKContext) {
  */
 export function getFirebaseContext(): FirebaseSDKContext {
 	return getContext(contextKey);
+}
+
+export function updateFirebaseContext(newSdks: FirebaseSDKContext): FirebaseSDKContext {
+	const sdks = getFirebaseContext();
+
+	setFirebaseContext({
+		...sdks,
+		...newSdks
+	});
+
+	return {
+		...sdks,
+		...newSdks
+	};
 }

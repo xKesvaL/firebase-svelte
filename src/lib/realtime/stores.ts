@@ -4,6 +4,7 @@ import { ref as getDbRef, set, update } from 'firebase/database';
 import { onValue } from 'firebase/database';
 import type { StoreOptions } from '$lib/types/index.js';
 import { logger } from '$lib/utils/logger.js';
+import { getFirebaseContext } from '$lib/sdk/stores';
 
 export interface RealtimeStoreOptions<T> extends StoreOptions {
 	startValue?: T;
@@ -20,18 +21,20 @@ export interface NodeStore<T> extends Omit<Writable<T | undefined | null>, 'set'
 
 /**
  * @description Important: Use this on the lowest level needed for watching changes. Don't put this on the root of your app, or you will get a lot of reads and your data will be enormous.
- * @param {Database} rtdb - The Firebase Realtime Database instance.
+ * @param {Database | undefined | null} rtdb - The Firebase Realtime Database instance.
  * @param {string | DatabaseReference} ref - The path to the data.
  * @param {RealtimeStoreOptions<T>} [options] - The initial value of the store.
  * @returns {NodeStore<T>} A store with realtime data on given path.
  */
 export function createNodeStore<T = unknown>(
-	rtdb: Database | undefined,
+	rtdb: Database | undefined | null,
 	ref: string | DatabaseReference,
 	options: RealtimeStoreOptions<T> = {}
 ): NodeStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once } = options;
+
+	rtdb = rtdb ?? getFirebaseContext()?.rtdb ?? null;
 
 	if (!rtdb) {
 		const { subscribe } = writable(startValue);
@@ -119,18 +122,20 @@ export interface NodeListStore<T> extends Omit<Writable<T | undefined | null>, '
 
 /**
  * @description Important: Use this on the lowest level needed for watching changes. Don't put this on the root of your app, or you will get a lot of reads and your data will be enormous.
- * @param {Database} rtdb - The Firebase Realtime Database instance.
+ * @param {Database | undefined | null} rtdb - The Firebase Realtime Database instance.
  * @param {string | DatabaseReference} ref - The path to the data.
  * @param {RealtimeStoreOptions<T>} [options] - The initial value of the store.
  * @returns {NodeListStore<T>} A store with realtime data on given path.
  */
 export function createNodeListStore<T = unknown>(
-	rtdb: Database | undefined,
+	rtdb: Database | undefined | null,
 	ref: string | DatabaseReference,
 	options: RealtimeStoreOptions<T> = {}
 ): NodeListStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once } = options;
+
+	rtdb = rtdb ?? getFirebaseContext()?.rtdb ?? null;
 
 	if (!rtdb) {
 		const { subscribe } = writable(startValue);

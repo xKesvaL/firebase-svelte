@@ -1,3 +1,4 @@
+import { getFirebaseContext } from '$lib/sdk/stores';
 import { logger } from '$lib/utils/logger.js';
 import type { Auth, User } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -6,11 +7,13 @@ import { readable, type Readable } from 'svelte/store';
 type UserStore = Readable<User | null | undefined>;
 
 /**
- * @param {Auth} auth - The Firebase Auth instance.
+ * @param {Auth | undefined | null} auth - The Firebase Auth instance.
  * @returns {UserStore} A store for the current user's data.
  */
-export function createUserStore(auth: Auth): UserStore {
+export function createUserStore(auth: Auth | null = null): UserStore {
 	let unsubscribe: () => void;
+
+	auth = auth ?? getFirebaseContext()?.auth ?? null;
 
 	if (!auth) {
 		if (!globalThis.window) {
@@ -29,7 +32,7 @@ export function createUserStore(auth: Auth): UserStore {
 	}
 
 	const { subscribe } = readable<User | null | undefined>(auth?.currentUser ?? undefined, (set) => {
-		unsubscribe = onAuthStateChanged(auth, (user) => {
+		unsubscribe = onAuthStateChanged(auth as Auth, (user) => {
 			set(user);
 		});
 

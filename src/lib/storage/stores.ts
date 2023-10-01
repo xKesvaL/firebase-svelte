@@ -1,3 +1,4 @@
+import { getFirebaseContext } from '$lib/sdk/stores';
 import { logger } from '$lib/utils/logger.js';
 import {
 	ref as getStorageRef,
@@ -22,17 +23,19 @@ export interface StorageListStoreOptions {
 
 /**
  *
- * @param {FirebaseStorage} storage the firebase storage instance
+ * @param {FirebaseStorage | undefined | null} storage the firebase storage instance
  * @param {string | StorageReference} reference the path to the storage reference
  * @param {StorageListStoreOptions} options the store options
  * @returns {StorageListStore} a store with the list of files in the storage reference
  */
 export function createStorageListStore(
-	storage: FirebaseStorage,
+	storage: FirebaseStorage | undefined | null,
 	reference: string | StorageReference,
 	options: StorageListStoreOptions
 ): StorageListStore {
 	const { startValue } = options;
+
+	storage = storage ?? getFirebaseContext().storage ?? null;
 
 	if (!storage) {
 		const { subscribe } = readable(startValue);
@@ -74,18 +77,20 @@ interface DownloadUrlStoreOptions {
 
 /**
  *
- * @param {FirebaseStorage} storage the firebase storage instance
+ * @param {FirebaseStorage | undefined | null} storage the firebase storage instance
  * @param {string | StorageReference} reference the path to the storage reference
  * @param {DownloadUrlStoreOptions} options the store options
  * @returns {DownloadUrlStore} a store with the download url of the storage reference
  */
 
 export function createDownloadUrlStore(
-	storage: FirebaseStorage,
+	storage: FirebaseStorage | undefined | null,
 	reference: string | StorageReference,
 	options: DownloadUrlStoreOptions
 ): DownloadUrlStore {
 	const { startValue } = options;
+
+	storage = storage ?? getFirebaseContext().storage ?? null;
 
 	if (!storage) {
 		const { subscribe } = readable(startValue);
@@ -122,11 +127,13 @@ interface UploadTaskStore extends Readable<UploadTaskSnapshot | null> {
 }
 
 export function createUploadTaskStore(
-	storage: FirebaseStorage,
+	storage: FirebaseStorage | undefined | null,
 	reference: string | StorageReference,
 	data: Blob | Uint8Array | ArrayBuffer,
 	metadata?: UploadMetadata
 ): UploadTaskStore {
+	storage = storage ?? getFirebaseContext().storage ?? null;
+
 	if (!storage) {
 		const { subscribe } = readable(null);
 

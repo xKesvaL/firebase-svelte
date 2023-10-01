@@ -18,6 +18,7 @@ import {
 } from 'firebase/firestore';
 import type { StoreOptions } from '$lib/types/index.js';
 import { logger } from '$lib/utils/logger.js';
+import { getFirebaseContext } from '$lib/sdk/stores';
 
 export interface DocStoreOptions<T> extends StoreOptions {
 	startValue?: T;
@@ -33,18 +34,20 @@ export interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' 
 }
 
 /**
- * @param {Firestore} firestore - The Firebase Firestore instance.
+ * @param {Firestore | undefined | null} firestore - The Firebase Firestore instance.
  * @param {string | DocumentReference} ref - The path to the document.
  * @param {DocStoreOptions} [options] - The options for the store. See our docs
  * @returns {DocStore} A store with realtime data on given doc path.
  */
 export function createDocStore<T = unknown>(
-	firestore: Firestore | undefined,
+	firestore: Firestore | undefined | null,
 	ref: string | DocumentReference,
 	options: DocStoreOptions<T> = {}
 ): DocStore<T> {
 	const { log, startValue, once } = options;
 	let unsubscribe: () => void;
+
+	firestore = firestore ?? getFirebaseContext()?.firestore ?? null;
 
 	if (!firestore) {
 		const { subscribe } = writable(startValue);
@@ -141,20 +144,22 @@ export interface CollectionStoreOptions<T> extends StoreOptions {
 }
 
 /**
- * @param {Firestore} firestore - The Firebase Firestore instance.
+ * @param {Firestore | undefined | null} firestore - The Firebase Firestore instance.
  * @param {string | CollectionReference} ref - The path to the collection.
  * @param {QueryConstraint[]} [queryConstraints] - The query constraints.
  * @param {CollectionStoreOptions} [options] - The options for the store. See our docs
  * @returns {CollectionStore} A store with realtime data on given collection path.
  */
 export function createCollectionStore<T = unknown>(
-	firestore: Firestore | undefined,
+	firestore: Firestore | undefined | null,
 	ref: string | CollectionReference,
 	queryConstraints: QueryConstraint[] = [],
 	options: CollectionStoreOptions<T> = {}
 ): CollectionStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
+
+	firestore = firestore ?? getFirebaseContext()?.firestore ?? null;
 
 	if (!firestore) {
 		const { subscribe } = readable<T[]>(startValue);
@@ -261,18 +266,20 @@ export interface CollectionGroupStore<T> extends Readable<T[]> {
 }
 
 /**
- * @param {Firestore} firestore - The Firebase Firestore instance.
+ * @param {Firestore | undefined | null} firestore - The Firebase Firestore instance.
  * @param {string | Query} ref - The query to the collection group.
  * @param {CollectionStoreOptions} [options] - The options for the store. See our docs
  * @returns {CollectionGroupStore} A store with realtime data on given collection group path.
  */
 export function createCollectionGroupStore<T = unknown>(
-	firestore: Firestore | undefined,
+	firestore: Firestore | undefined | null,
 	ref: string | Query,
 	options: CollectionStoreOptions<T> = {}
 ): CollectionGroupStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
+
+	firestore = firestore ?? getFirebaseContext()?.firestore ?? null;
 
 	if (!firestore) {
 		const { subscribe } = writable<T[]>(startValue);
