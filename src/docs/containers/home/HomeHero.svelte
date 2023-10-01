@@ -149,7 +149,7 @@
      let:data=&lbrace;comments&rbrace;
    &gt
     &lbrace;#each comments as comment&rbrace;
-     &lt;p>&lbrace;comment.content&rbrace;&lt;/p&gt
+     &lt;p&gt;&lbrace;comment.content&rbrace;&lt;/p&gt
     &lbrace;/each&rbrace;
 				</pre>
 			</Code>
