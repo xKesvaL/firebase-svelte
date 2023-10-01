@@ -1,10 +1,12 @@
 import { getFirebaseContext } from '$lib/sdk/stores';
 import { logger } from '$lib/utils/logger.js';
 import type { Auth, User } from 'firebase/auth';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { readable, type Readable } from 'svelte/store';
 
-type UserStore = Readable<User | null | undefined>;
+interface UserStore extends Readable<User | null | undefined> {
+	signOut: () => Promise<void>;
+}
 
 /**
  * @param {Auth | undefined | null} auth - The Firebase Auth instance.
@@ -19,7 +21,10 @@ export function createUserStore(auth: Auth | null = null): UserStore {
 		if (!globalThis.window) {
 			const { subscribe } = readable(null);
 			return {
-				subscribe
+				subscribe,
+				signOut: async () => {
+					return;
+				}
 			};
 		}
 
@@ -27,7 +32,8 @@ export function createUserStore(auth: Auth | null = null): UserStore {
 
 		const { subscribe } = readable(null);
 		return {
-			subscribe
+			subscribe,
+			signOut: async () => {}
 		};
 	}
 
@@ -39,5 +45,12 @@ export function createUserStore(auth: Auth | null = null): UserStore {
 		return () => unsubscribe();
 	});
 
-	return { subscribe };
+	return {
+		subscribe,
+		signOut: async () => {
+			await signOut(auth as Auth).catch((error) => {
+				logger('error', error);
+			});
+		}
+	};
 }

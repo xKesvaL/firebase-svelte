@@ -4,8 +4,8 @@
 	import { getFirebaseContext } from '$lib/sdk/stores.js';
 
 	interface $$Slots {
-		default: { user: User };
-		signedOut: Record<string, never>;
+		default: { user: User; signOut: () => Promise<void> };
+		signedOut: { auth: Auth };
 		loading: Record<string, never>;
 	}
 
@@ -15,9 +15,9 @@
 </script>
 
 {#if $user}
-	<slot user={$user} />
+	<slot user={$user} signOut={user.signOut} />
 {:else if $user === undefined}
 	<slot name="loading" />
 {:else}
-	<slot name="signedOut" />
+	<slot name="signedOut" {auth} />
 {/if}
