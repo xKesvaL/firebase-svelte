@@ -48,6 +48,7 @@
 		variant="ghost"
 		size="icon"
 		on:click={copyToClipboard}
+		aria-label="Copy code to clipboard"
 	>
 		<IconCopy />
 	</Button>
