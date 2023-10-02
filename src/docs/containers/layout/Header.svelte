@@ -20,6 +20,7 @@
 		on:click={() => {
 			sidebarShown.set(!$sidebarShown);
 		}}
+		aria-label="Open sidebar"
 	>
 		<IconMenu2 />
 	</Button>
