@@ -7,7 +7,7 @@
 </script>
 
 <section>
-	<div class="container flex h-full flex-col gap-8 py-8 xl:py-28">
+	<div class="container flex h-full flex-col gap-8 py-8 xl:py-24">
 		<div class="flex flex-col gap-8 xl:flex-row">
 			<div>
 				<h1 class="my-4 flex items-center gap-2 text-5xl md:gap-0 lg:text-6xl">
