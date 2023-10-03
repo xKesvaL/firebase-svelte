@@ -27,6 +27,7 @@
 		default: { remoteConfig: RemoteConfig | null };
 		loading: {};
 		disabled: {};
+		fallback: {};
 	}
 </script>
 
@@ -34,7 +35,9 @@
 	<slot {remoteConfig} />
 {:else if remoteConfig !== undefined && $configActivated === false}
 	<slot name="disabled" />
-{:else}
+{:else if configActivated.loading}
 	<slot name="loading" />
+{:else}
+	<slot name="fallback" />
 {/if}
 ```

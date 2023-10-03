@@ -19,6 +19,7 @@ export interface RemoteConfigStoreOptions<T> extends Omit<StoreOptions, 'once'> 
 
 export interface RemoteConfigStore<T> extends Readable<T> {
 	error: unknown;
+	loading: boolean;
 }
 
 /**
@@ -39,6 +40,9 @@ function fallback<T>(
 			subscribe,
 			get error() {
 				return null;
+			},
+			get loading() {
+				return false;
 			}
 		};
 
@@ -68,6 +72,7 @@ export function createRemoteConfigActivationStore(
 		return fallbackStore;
 	}
 
+	let loading = true;
 	let error: unknown = null;
 
 	const { subscribe } = readable<boolean | undefined>(undefined, (set) => {
@@ -80,6 +85,9 @@ export function createRemoteConfigActivationStore(
 			.catch((err) => {
 				logger('error', err);
 				error = err;
+			})
+			.finally(() => {
+				loading = false;
 			});
 	});
 
@@ -87,6 +95,9 @@ export function createRemoteConfigActivationStore(
 		subscribe,
 		get error() {
 			return error;
+		},
+		get loading() {
+			return loading;
 		}
 	};
 }
@@ -111,14 +122,20 @@ export function createRemoteConfigValueStore<T = unknown>(
 		return fallbackStore;
 	}
 
+	let loading = true;
+
 	const { subscribe } = readable<T>(options.startValue, (set) => {
 		set(getValue(remoteConfig as RemoteConfig, key) as T);
+		loading = false;
 	});
 
 	return {
 		subscribe,
 		get error() {
 			return null;
+		},
+		get loading() {
+			return loading;
 		}
 	};
 }
@@ -143,14 +160,20 @@ export function createRemoteConfigBooleanStore(
 		return fallbackStore;
 	}
 
+	let loading = true;
+
 	const { subscribe } = readable<boolean>(options.startValue, (set) => {
 		set(getBoolean(remoteConfig as RemoteConfig, key));
+		loading = false;
 	});
 
 	return {
 		subscribe,
 		get error() {
 			return null;
+		},
+		get loading() {
+			return loading;
 		}
 	};
 }
@@ -175,14 +198,20 @@ export function createRemoteConfigNumberStore(
 		return fallbackStore;
 	}
 
+	let loading = true;
+
 	const { subscribe } = readable<number>(options.startValue, (set) => {
 		set(getNumber(remoteConfig as RemoteConfig, key));
+		loading = false;
 	});
 
 	return {
 		subscribe,
 		get error() {
 			return null;
+		},
+		get loading() {
+			return loading;
 		}
 	};
 }
@@ -207,14 +236,20 @@ export function createRemoteConfigStringStore(
 		return fallbackStore;
 	}
 
+	let loading = true;
+
 	const { subscribe } = readable<string>(options.startValue, (set) => {
 		set(getString(remoteConfig as RemoteConfig, key));
+		loading = false;
 	});
 
 	return {
 		subscribe,
 		get error() {
 			return null;
+		},
+		get loading() {
+			return loading;
 		}
 	};
 }

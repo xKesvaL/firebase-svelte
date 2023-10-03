@@ -11,8 +11,11 @@
 	import Header from '$docs/containers/layout/Header.svelte';
 	import Toasts from '$docs/containers/layout/Toasts.svelte';
 	import Footer from '$docs/containers/layout/Footer.svelte';
+	import { sidebarShown } from '$docs/stores/sidebar';
 
 	onNavigate((navigation) => {
+		sidebarShown.set(false);
+
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {

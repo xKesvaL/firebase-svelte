@@ -6,15 +6,17 @@
 	export let key: string;
 
 	let store = createRemoteConfigValueStore<Value>(remoteConfig, key);
-
 	interface $$Slots {
 		default: { value: Value };
 		loading: {};
+		fallback: {};
 	}
 </script>
 
-{#if $store !== undefined}
+{#if $store}
 	<slot value={$store} />
-{:else}
+{:else if store.loading}
 	<slot name="loading" />
+{:else}
+	<slot name="fallback" />
 {/if}

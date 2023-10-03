@@ -11,11 +11,14 @@
 	interface $$Slots {
 		default: { list: ListResult | null; ref: StorageReference | null; storage?: FirebaseStorage };
 		loading: {};
+		fallback: {};
 	}
 </script>
 
-{#if $listStore !== undefined}
+{#if $listStore}
 	<slot list={$listStore} ref={listStore.ref} {storage} />
-{:else}
+{:else if listStore.loading}
 	<slot name="loading" />
+{:else}
+	<slot name="fallback" />
 {/if}

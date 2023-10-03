@@ -83,6 +83,7 @@ export function createNodeStore<T = unknown>(
 			(err) => {
 				logger('error', `${err.name} - ${err.message}`);
 				error = err;
+				loading = false;
 			}
 		);
 
@@ -187,6 +188,7 @@ export function createNodeListStore<T = unknown>(
 			(err) => {
 				logger('error', `${err.name} - ${err.message}`);
 				error = err;
+				loading = false;
 			}
 		);
 

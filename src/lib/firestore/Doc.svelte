@@ -1,4 +1,3 @@
-<!--suppress TypeScriptUnresolvedReference -->
 <script lang="ts" generics="Data extends DocumentData">
 	import { getFirebaseContext } from '$lib/sdk/stores.js';
 

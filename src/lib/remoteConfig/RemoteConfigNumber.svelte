@@ -10,11 +10,14 @@
 	interface $$Slots {
 		default: { value: number };
 		loading: {};
+		fallback: {};
 	}
 </script>
 
-{#if $store !== undefined}
+{#if $store}
 	<slot value={$store} />
-{:else}
+{:else if store.loading}
 	<slot name="loading" />
+{:else}
+	<slot name="fallback" />
 {/if}

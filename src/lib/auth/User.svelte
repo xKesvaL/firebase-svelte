@@ -16,7 +16,7 @@
 
 {#if $user}
 	<slot user={$user} signOut={user.signOut} />
-{:else if $user === undefined}
+{:else if user.loading}
 	<slot name="loading" />
 {:else}
 	<slot name="signedOut" {auth} />
