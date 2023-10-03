@@ -8,11 +8,11 @@
 
 	export let auth: Auth;
 	export let firestore: Firestore | undefined = undefined;
-	export let rtdb: Database | undefined = undefined;
+	export let realtimeDb: Database | undefined = undefined;
 	export let storage: FirebaseStorage | undefined = undefined;
 	export let remoteConfig: RemoteConfig | undefined = undefined;
 
-	setFirebaseContext({ auth, firestore, rtdb, storage, remoteConfig });
+	setFirebaseContext({ auth, firestore, rtdb: realtimeDb, storage, remoteConfig });
 </script>
 
 <slot />
