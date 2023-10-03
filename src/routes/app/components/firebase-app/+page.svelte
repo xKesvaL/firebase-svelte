@@ -11,6 +11,16 @@
 		</p>
 		<ol>
 			<li>
+				<h2 class="text-3xl lg:text-4xl">Props</h2>
+				<ul>
+					<li><code>auth?</code> <span>-</span> Firebase Auth Instance</li>
+					<li><code>firestore?</code> <span>-</span> Firebase Firestore Instance</li>
+					<li><code>realtimeDb?</code> <span>-</span> Firebase Realtime Database Instance</li>
+					<li><code>remoteConfig?</code> <span>-</span> Firebase Remote Config Instance</li>
+					<li><code>storage?</code> <span>-</span> Firebase Storage Instance</li>
+				</ul>
+			</li>
+			<li>
 				<h2 class="text-3xl lg:text-4xl">Examples</h2>
 				<p class="max-w-prose">
 					Here's an example of how to use the <code>&lt;FirebaseApp&gt;</code> component.
@@ -58,6 +68,25 @@
 				display: flex;
 				flex-direction: column;
 				gap: 1rem;
+
+				ul {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+					padding-left: 1.25rem;
+					position: relative;
+
+					li {
+						flex-direction: row;
+						gap: 0.75rem;
+
+						&::before {
+							content: '•';
+							left: 0;
+							position: absolute;
+						}
+					}
+				}
 			}
 		}
 	}
