@@ -1,4 +1,5 @@
 <script>
+	import { ROUTES } from '$docs/config';
 	import { Button } from '$docs/ui/button';
 </script>
 
@@ -10,13 +11,14 @@
 			<li>
 				<code>auth?</code> - The firebase auth instance, optional if you put the <Button
 					variant="link"
+					href={ROUTES.appComponentsFirebase}
 					class="h-auto p-0 text-base text-accent">&lt;FirebaseApp&gt;</Button
 				> component at the root of your app, or higher than where you're using this component.
 			</li>
 		</ul>
 		<h2 class="text-3xl xl:text-4xl">Slots & Props</h2>
 		<div class="flex flex-col gap-4">
-			<h3 class="text-2xl lg:text-3xl">Default</h3>
+			<h3 class="text-2xl lg:text-3xl font-mono font-bold">default</h3>
 			<p class="max-w-prose">The default slot is rendered when the user is signed in.</p>
 			<ul class="flex max-w-prose flex-col gap-2">
 				<li>
