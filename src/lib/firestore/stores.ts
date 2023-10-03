@@ -109,6 +109,7 @@ export function createDocStore<T = unknown & { fireLoading?: boolean }>(
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
 				error = err;
+				loading = false;
 			}
 		);
 
@@ -262,6 +263,7 @@ export function createCollectionStore<T = unknown>(
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
 				error = err;
+				loading = false;
 			}
 		);
 
@@ -358,6 +360,7 @@ export function createCollectionGroupStore<T = unknown>(
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
 				error = err;
+				loading = false;
 			}
 		);
 
