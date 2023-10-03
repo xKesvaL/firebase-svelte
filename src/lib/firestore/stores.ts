@@ -30,9 +30,7 @@ export interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' 
 	loading: boolean;
 	error: Error | null;
 	set: (value: T) => Promise<unknown>;
-	setOptimistic: (value: T) => Promise<unknown>;
 	update: (value: Partial<T>) => Promise<unknown>;
-	updateOptimistic: (value: Partial<T>) => Promise<unknown>;
 }
 
 /**
@@ -41,7 +39,7 @@ export interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' 
  * @param {DocStoreOptions<T>} [options] - The options for the store. See our docs
  * @returns {DocStore} A store with realtime data on given doc path.
  */
-export function createDocStore<T = unknown & { fireLoading?: boolean }>(
+export function createDocStore<T = unknown>(
 	firestore: Firestore | undefined | null,
 	ref: string | DocumentReference,
 	options: DocStoreOptions<T> = {}
@@ -66,13 +64,7 @@ export function createDocStore<T = unknown & { fireLoading?: boolean }>(
 			set: async () => {
 				return;
 			},
-			setOptimistic: async () => {
-				return;
-			},
 			update: async () => {
-				return;
-			},
-			updateOptimistic: async () => {
 				return;
 			}
 		};
@@ -90,11 +82,7 @@ export function createDocStore<T = unknown & { fireLoading?: boolean }>(
 	let error: Error | null = null;
 	const docRef = typeof ref === 'string' ? doc(firestore, ref) : ref;
 
-	const {
-		subscribe,
-		set: setStore,
-		update: updateStore
-	} = writable<T | null>(startValue, (set) => {
+	const { subscribe } = writable<T | null>(startValue, (set) => {
 		unsubscribe = onSnapshot(
 			docRef,
 			(snapshot) => {
@@ -133,25 +121,7 @@ export function createDocStore<T = unknown & { fireLoading?: boolean }>(
 		set: async (value) => {
 			return await setDoc(docRef, value as never);
 		},
-		setOptimistic: async (value) => {
-			setStore({
-				...value,
-				fireLoading: true
-			});
-			return await setDoc(docRef, value as never);
-		},
 		update: async (value) => {
-			return await updateDoc(docRef, value as never);
-		},
-		updateOptimistic: async (value) => {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			updateStore((curr: any) => {
-				return {
-					...curr,
-					...value,
-					loading: true
-				};
-			});
 			return await updateDoc(docRef, value as never);
 		}
 	};
