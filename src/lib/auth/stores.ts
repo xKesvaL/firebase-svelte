@@ -6,6 +6,7 @@ import { readable, type Readable } from 'svelte/store';
 
 interface UserStore extends Readable<User | null | undefined> {
 	signOut: () => Promise<void>;
+	loading: boolean;
 }
 
 /**
@@ -24,6 +25,9 @@ export function createUserStore(auth: Auth | null = null): UserStore {
 				subscribe,
 				signOut: async () => {
 					return;
+				},
+				get loading() {
+					return false;
 				}
 			};
 		}
@@ -33,13 +37,21 @@ export function createUserStore(auth: Auth | null = null): UserStore {
 		const { subscribe } = readable(null);
 		return {
 			subscribe,
-			signOut: async () => {}
+			signOut: async () => {
+				return;
+			},
+			get loading() {
+				return false;
+			}
 		};
 	}
+
+	let loading = true;
 
 	const { subscribe } = readable<User | null | undefined>(auth?.currentUser ?? undefined, (set) => {
 		unsubscribe = onAuthStateChanged(auth as Auth, (user) => {
 			set(user);
+			loading = false;
 		});
 
 		return () => unsubscribe();
@@ -51,6 +63,9 @@ export function createUserStore(auth: Auth | null = null): UserStore {
 			await signOut(auth as Auth).catch((error) => {
 				logger('error', error);
 			});
+		},
+		get loading() {
+			return loading;
 		}
 	};
 }
