@@ -15,6 +15,8 @@ import { readable, type Readable } from 'svelte/store';
 
 export interface StorageListStore extends Readable<ListResult> {
 	ref: StorageReference | null;
+	loading: boolean;
+	error: Error | null;
 }
 
 export interface StorageListStoreOptions {
@@ -41,7 +43,13 @@ export function createStorageListStore(
 		const { subscribe } = readable(startValue);
 		const store = {
 			subscribe,
-			ref: null
+			ref: null,
+			get loading() {
+				return false;
+			},
+			get error() {
+				return null;
+			}
 		};
 
 		if (!globalThis.window) {
@@ -54,21 +62,39 @@ export function createStorageListStore(
 	}
 
 	const ref = typeof reference === 'string' ? getStorageRef(storage, reference) : reference;
+	let loading = true;
+	let error: Error | null = null;
 
 	const { subscribe } = readable(startValue, (set) => {
-		list(ref).then((snapshot) => {
-			set(snapshot);
-		});
+		list(ref)
+			.then((snapshot) => {
+				set(snapshot);
+			})
+			.catch((e) => {
+				logger('error', e);
+				error = e;
+			})
+			.finally(() => {
+				loading = false;
+			});
 	});
 
 	return {
 		subscribe,
-		ref
+		ref,
+		get loading() {
+			return loading;
+		},
+		get error() {
+			return error;
+		}
 	};
 }
 
 interface DownloadUrlStore extends Readable<string | null> {
 	ref: StorageReference | null;
+	loading: boolean;
+	error: Error | null;
 }
 
 interface DownloadUrlStoreOptions {
@@ -96,7 +122,13 @@ export function createDownloadUrlStore(
 		const { subscribe } = readable(startValue);
 		const store = {
 			subscribe,
-			ref: null
+			ref: null,
+			get loading() {
+				return false;
+			},
+			get error() {
+				return null;
+			}
 		};
 
 		if (!globalThis.window) {
@@ -109,21 +141,39 @@ export function createDownloadUrlStore(
 	}
 
 	const ref = typeof reference === 'string' ? getStorageRef(storage, reference) : reference;
+	let loading = true;
+	let error: Error | null = null;
 
 	const { subscribe } = readable(startValue, (set) => {
-		getDownloadURL(ref).then((snapshot) => {
-			set(snapshot);
-		});
+		getDownloadURL(ref)
+			.then((snapshot) => {
+				set(snapshot);
+			})
+			.catch((e) => {
+				logger('error', e);
+				error = e;
+			})
+			.finally(() => {
+				loading = false;
+			});
 	});
 
 	return {
 		subscribe,
-		ref
+		ref,
+		get loading() {
+			return loading;
+		},
+		get error() {
+			return error;
+		}
 	};
 }
 
 interface UploadTaskStore extends Readable<UploadTaskSnapshot | null> {
 	ref: StorageReference | null;
+	loading: boolean;
+	error: Error | null;
 }
 
 export function createUploadTaskStore(
@@ -139,7 +189,13 @@ export function createUploadTaskStore(
 
 		const store = {
 			subscribe,
-			ref: null
+			ref: null,
+			get loading() {
+				return false;
+			},
+			get error() {
+				return null;
+			}
 		};
 
 		if (!globalThis.window) {
@@ -155,6 +211,9 @@ export function createUploadTaskStore(
 
 	let unsubscribe: () => void;
 
+	let loading = true;
+	let error: Error | null = null;
+
 	const { subscribe } = readable<UploadTaskSnapshot | null>(null, (set) => {
 		const task = uploadBytesResumable(ref, data, metadata);
 
@@ -162,13 +221,17 @@ export function createUploadTaskStore(
 			'state_changed',
 			(snapshot) => {
 				set(snapshot);
+				loading = false;
 			},
-			(error) => {
-				logger('error', `${error.code} ${error.name}, ${error.message}`);
+			(err) => {
+				logger('error', `${err.code} ${err.name}, ${err.message}`);
+				error = new Error(`${err.code} ${err.name}, ${err.message}`);
 				set(task.snapshot);
+				loading = false;
 			},
 			() => {
 				set(task.snapshot);
+				loading = false;
 			}
 		);
 
@@ -177,6 +240,12 @@ export function createUploadTaskStore(
 
 	return {
 		subscribe,
-		ref
+		ref,
+		get loading() {
+			return loading;
+		},
+		get error() {
+			return error;
+		}
 	};
 }
