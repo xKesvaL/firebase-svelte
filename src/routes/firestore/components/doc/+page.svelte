@@ -26,17 +26,27 @@
 				avoid a loading state. The `Data` type is inferred from what data you give it and used for the
 				DocumentReference too.
 			</li>
+			<li>
+				<code>log: boolean = false</code> - If true, the store will log additional information to the console.
+			</li>
+			<li>
+				<code>once: boolean = false</code> - If true, the store will only fetch the data once, and
+				will not update when the data changes.
+			</li>
 		</ul>
 		<h2 class="text-3xl xl:text-4xl">Slots & Props</h2>
 		<div class="flex flex-col gap-4">
 			<h3 class="font-mono text-2xl font-bold lg:text-3xl">default</h3>
-			<p class="max-w-prose">The default slot is rendered when the user is signed in.</p>
+			<p class="max-w-prose">The default slot is rendered when data is found.</p>
 			<ul class="flex max-w-prose flex-col gap-2">
 				<li>
-					<code>user: User</code> - The user object from firebase auth.
+					<code>data: Data</code> - The data object from firestore.
 				</li>
 				<li>
-					<code>signOut: () => Promise&lt;void&gt;</code> - The user object from firebase auth.
+					<code>ref: DocumentReference</code> - The document reference you gave.
+				</li>
+				<li>
+					<code>error: Error | null</code>
 				</li>
 			</ul>
 		</div>
@@ -45,14 +55,10 @@
 			<p class="max-w-prose">The loading slot.</p>
 		</div>
 		<div class="flex flex-col gap-4">
-			<h3 class="font-mono text-2xl font-bold lg:text-3xl">signedOut</h3>
-			<p class="max-w-prose">The signedOut slot is rendered when the user is signed out.</p>
-			<ul class="flex max-w-prose flex-col gap-2">
-				<li>
-					<code>auth: Auth</code> - The firebase auth instance. This is passed in as a prop, so you can
-					use it to sign in the user.
-				</li>
-			</ul>
+			<h3 class="font-mono text-2xl font-bold lg:text-3xl">fallback</h3>
+			<p class="max-w-prose">
+				The fallback slot. This is rendered when the store is not found.
+			</p>
 		</div>
 	</div>
 </section>

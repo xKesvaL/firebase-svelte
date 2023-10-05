@@ -119,39 +119,39 @@
 				example below shows.
 			</p>
 			<Code filename="+page.svelte" language="html">
-				<pre>
-&lt;script&gt;
- import &lbrace; Collection, Doc, User &rbrace; from 'firebase-svelte';
- import &lbrace; firestore, auth &rbrace; from '$lib/firebase';
-&lt;/script&gt;
+					{`
+<script>
+ import { Collection, Doc, User } from 'firebase-svelte';
+ import { firestore, auth } from '$lib/firebase';
+</script>
 
-&lt;!-- 1. 🔥 Firebase App --&gt;
-&lt;FirebaseApp &lbrace;auth&rbrace; &lbrace;firestore&rbrace;&gt
+<!-- 1. 🔥 Firebase App -->
+<FirebaseApp {auth} {firestore}>
 
- &lt;!-- 2. 🧑‍🤝‍🧑 User --&gt;
- &lt;User let:user&gt
+ <!-- 2. 🧑‍🤝‍🧑 User -->
+ <User let:user>
     
- &lt;p&gtHello, &lbrace;user.displayName&rbrace;&lt;/p&gt
+ <p>Hello, {user.displayName}</p>
 
-  &lt;!-- 3. 📄 Document, for example owned by a user --&gt;
-  &lt;Doc 
-    ref=&lbrace;`posts/$&lbrace;user.uid&rbrace;`&rbrace; 
-    let:data=&lbrace;post&rbrace; 
-    let:ref=&lbrace;postRef&rbrace;
-  &gt
+  <!-- 3. 📄 Document, for example owned by a user -->
+  <Doc 
+    ref={\`posts/\${user.uid}\`} 
+    let:data={post} 
+    let:ref={postRef}
+  >
 
-   &lt;h2&gt&lbrace;post.title&rbrace;&lt;/h2&gt
+   <h2>{post.title}</h2>
 
-   &lt;!-- 4. 📚 Collection, 
-	 for example comments on a post --&gt;
-   &lt;Collection 
-     ref=&lbrace;`$&lbrace;postRef.path&rbrace;/comments`&rbrace; 
-     let:data=&lbrace;comments&rbrace;
-   &gt
-    &lbrace;#each comments as comment&rbrace;
-     &lt;p&gt;&lbrace;comment.content&rbrace;&lt;/p&gt
-    &lbrace;/each&rbrace;
-				</pre>
+   <!-- 4. 📚 Collection, 
+	 for example comments on a post -->
+   <Collection 
+     ref={\`\${postRef.path}/comments\`} 
+     let:data={comments}
+   >
+    {#each comments as comment}
+     <p>{comment.content}</p>
+    {/each}
+`}
 			</Code>
 		</div>
 	</div>
