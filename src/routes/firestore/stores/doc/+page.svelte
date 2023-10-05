@@ -13,7 +13,7 @@
 		<h2 class="text-3xl lg:text-4xl">Parameters</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
-				<code>firestore: Firestore</code> - The firebase auth instance. If you put the <Button
+				<code>firestore: Firestore</code> - The firebase firestore instance. If you put the <Button
 					variant="link"
 					class="h-auto p-0 text-base text-accent">&lt;FirebaseApp&gt;</Button
 				> component at the root of your app, or higher than where you're using this store, you can use
