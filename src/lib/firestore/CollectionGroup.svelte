@@ -5,7 +5,7 @@
 
 	interface $$Slots {
 		default: {
-			data: any[];
+			data: Data[];
 			ref: Query<Data[]> | null | undefined;
 			count: number;
 			error: Error | null;

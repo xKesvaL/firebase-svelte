@@ -6,12 +6,12 @@
 
 	interface $$Slots {
 		default: {
-			data: any[];
+			data: Data[];
 			ref: CollectionReference<Data[]> | null | undefined;
 			count: number;
 			error: Error | null;
-			first: any | null;
-			last: any | null;
+			first: Data | null | unknown;
+			last: Data | null | unknown;
 		};
 		loading: Record<string, never>;
 		fallback: Record<string, never>;

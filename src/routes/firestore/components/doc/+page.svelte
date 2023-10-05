@@ -17,8 +17,9 @@
 				> component at the root of your app, or higher than where you're using this component.
 			</li>
 			<li>
-				<code>ref: string | DocumentReference</code> - The document reference to create the store
-				from. Can be a string, just like <code>posts/123</code> or a <code>DocumentReference</code>
+				<code>ref: string | DocumentReference&lt;Data&gt;</code> - The document reference to create
+				the store from. Can be a string, just like <code>posts/123</code> or a
+				<code>DocumentReference</code>
 				object, using the <code>doc</code> firebase function.
 			</li>
 			<li>
@@ -27,11 +28,12 @@
 				DocumentReference too.
 			</li>
 			<li>
-				<code>log: boolean = false</code> - If true, the store will log additional information to the console.
+				<code>log: boolean = false</code> - If true, the store will log additional information to the
+				console.
 			</li>
 			<li>
-				<code>once: boolean = false</code> - If true, the store will only fetch the data once, and
-				will not update when the data changes.
+				<code>once: boolean = false</code> - If true, the store will only fetch the data once, and will
+				not update when the data changes.
 			</li>
 		</ul>
 		<h2 class="text-3xl xl:text-4xl">Slots & Props</h2>
@@ -43,22 +45,20 @@
 					<code>data: Data</code> - The data object from firestore.
 				</li>
 				<li>
-					<code>ref: DocumentReference</code> - The document reference you gave.
+					<code>ref: DocumentReference&lt;Data&gt; | null</code> - The document reference you gave.
 				</li>
 				<li>
-					<code>error: Error | null</code>
+					<code>error: Error | null</code> - Error if any.
 				</li>
 			</ul>
 		</div>
 		<div class="flex flex-col gap-4">
 			<h3 class="font-mono text-2xl font-bold lg:text-3xl">loading</h3>
-			<p class="max-w-prose">The loading slot.</p>
+			<p class="max-w-prose">The loading slot. This is rendered while the data is fetching.</p>
 		</div>
 		<div class="flex flex-col gap-4">
 			<h3 class="font-mono text-2xl font-bold lg:text-3xl">fallback</h3>
-			<p class="max-w-prose">
-				The fallback slot. This is rendered when the store is not found.
-			</p>
+			<p class="max-w-prose">The fallback slot. This is rendered when the data is not found.</p>
 		</div>
 	</div>
 </section>
