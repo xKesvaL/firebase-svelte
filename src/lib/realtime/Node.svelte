@@ -5,7 +5,7 @@
 
 	interface $$Slots {
 		default: {
-			data: Data[];
+			data: Data;
 			ref: DatabaseReference | null;
 			error: Error | null;
 		};
@@ -15,11 +15,11 @@
 
 	export let rtdb: Database | undefined = getFirebaseContext().rtdb;
 	export let ref: string | DatabaseReference;
-	export let startValue: Data[] = [];
+	export let startValue: Data | undefined = undefined;
 	export let once = false;
 	export let log = false;
 
-	let store = createNodeStore<Data[]>(rtdb, ref, {
+	let store = createNodeStore<Data>(rtdb, ref, {
 		startValue,
 		once,
 		log

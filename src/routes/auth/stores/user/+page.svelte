@@ -23,8 +23,8 @@
 		<h2 class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
-				<code>subscribe: (auth: Auth) => void;</code> - Subscribe method for the Svelte store. Allows
-				for the `$store` syntax.
+				<code>subscribe: ((auth: Auth) => void)) => void;</code> - Subscribe method for the Svelte store.
+				Allows for the `$store` syntax.
 			</li>
 			<li>
 				<code>signOut: () => Promise&lt;void&gt;</code> - Signs the user out.

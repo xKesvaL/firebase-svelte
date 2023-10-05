@@ -32,8 +32,8 @@
 		<h2 class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
-				<code>subscribe: (val: T) => void;</code> - Subscribe method for the Svelte store. Allows for
-				the `$store` syntax.
+				<code>subscribe: ((val: T) => void)) => void;</code> - Subscribe method for the Svelte store.
+				Allows for the `$store` syntax.
 			</li>
 			<li>
 				<code>ref: DocumentReference</code> - The document reference used to create the store.
