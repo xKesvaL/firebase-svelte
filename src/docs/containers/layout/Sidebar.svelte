@@ -35,7 +35,7 @@
 			variant="link"
 			size="sm"
 			class="h-auto justify-start px-0 py-1.5 text-foreground"
-			href={ROUTES.appStoresFirebase}>getFirebaseContext()</Button
+			href={ROUTES.appStoresFirebase}>Firebase Context</Button
 		>
 	</div>
 	<Separator class="my-4" />

@@ -1,21 +1,21 @@
 .token {
-	.keyword {
+	&.keyword {
 		color: #a277ff;
 	}
 
-	.operator {
+	&.operator {
 		color: #a277ff;
 	}
 
-	.punctuation {
+	&.punctuation {
 		color: #ffca85;
 	}
 
-	.function {
+	&.function {
 		color: #ffca85;
 	}
 
-	.string {
+	&.string {
 		color: #61ffca;
 	}
 
