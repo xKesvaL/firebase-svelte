@@ -31,7 +31,7 @@
 				the collection.
 			</li>
 			<li>
-				<code>options: CollectionStoreOptions&lt;T&gt;</code> - Options for the store.
+				<code>options?: CollectionStoreOptions&lt;T&gt;</code> - Options for the store.
 			</li>
 		</ul>
 		<h2 class="text-3xl lg:text-4xl">Properties</h2>

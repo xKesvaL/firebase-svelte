@@ -26,7 +26,7 @@
 				object, using the <code>doc</code> firebase function.
 			</li>
 			<li>
-				<code>options: DocStoreOptions&lt;T&gt;</code> - Options for the store.
+				<code>options?: DocStoreOptions&lt;T&gt;</code> - Options for the store.
 			</li>
 		</ul>
 		<h2 class="text-3xl lg:text-4xl">Properties</h2>
@@ -51,7 +51,7 @@
 				<code>set: (val: T) => Promise&lt;void&gt;</code>
 			</li>
 			<li>
-				<code>update: (val: Promise&lt;T&gt;) => Promise&lt;void&gt;</code>
+				<code>update: (val: T) => Promise&lt;void&gt;</code>
 			</li>
 		</ul>
 		<h2 class="text-3xl lg:text-4xl">Types</h2>
