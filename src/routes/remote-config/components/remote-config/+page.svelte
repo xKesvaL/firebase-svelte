@@ -17,22 +17,12 @@
 				> component at the root of your app, or higher than where you're using this component.
 			</li>
 			<li>
-				<code>ref: string | DatabaseReference&lt;Data&gt;</code> - The node reference to create the
-				store from. Can be a string, just like <code>posts/123</code> or a
-				<code>DatabaseReference</code>
-				object, using the <code>ref</code> database function.
-			</li>
-			<li>
 				<code>startValue?: Data</code> - The initial value of the store. This is useful if you want to
 				avoid a loading state. The `Data` type is inferred from what data you give it.
 			</li>
 			<li>
-				<code>log: boolean = false</code> - If true, the store will log additional information to the
-				console.
-			</li>
-			<li>
-				<code>once: boolean = false</code> - If true, the store will only fetch the data once, and will
-				not update when the data changes.
+				<code>minimumFetchIntervalInSeconds = 3600</code> - The minimum interval in seconds between config
+				fetches. This is useful if you want to avoid fetching the config too often or too infrequently.
 			</li>
 		</ul>
 		<h2 class="text-3xl xl:text-4xl">Slots & Props</h2>
@@ -41,15 +31,15 @@
 			<p class="max-w-prose">The default slot is rendered when data is found.</p>
 			<ul class="flex max-w-prose flex-col gap-2">
 				<li>
-					<code>data: Data</code> - The data object from the database.
-				</li>
-				<li>
-					<code>ref: DatabaseReference&lt;Data&gt; | null</code> - The database reference you gave.
-				</li>
-				<li>
-					<code>error: Error | null</code> - Error if any.
+					<code>remoteConfig: RemoteConfig</code> - The remote config object.
 				</li>
 			</ul>
+		</div>
+		<div class="flex flex-col gap-4">
+			<h3 class="font-mono text-2xl font-bold lg:text-3xl">disabled</h3>
+			<p class="max-w-prose">
+				The disabled slot. This is rendered if the remote config is disabled.
+			</p>
 		</div>
 		<div class="flex flex-col gap-4">
 			<h3 class="font-mono text-2xl font-bold lg:text-3xl">loading</h3>
