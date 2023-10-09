@@ -25,13 +25,18 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl">createRemoteConfigActivationStore()</h1>
+		<h1
+			id="create-remote-config-activation-store"
+			class="font-mono text-4xl font-black lg:text-5xl"
+		>
+			createRemoteConfigActivationStore()
+		</h1>
 		<p class="max-w-prose">
 			<code>createRemoteConfigActivationStore&lt;T&gt;(remoteConfig)</code> creates a store that will
 			activate the current remoteconfig instance. The store contains a boolean value that will be true
 			if the remote config is activated, and false if it's not.
 		</p>
-		<h2 class="text-3xl lg:text-4xl">Parameters</h2>
+		<h2 id="parameters" class="text-3xl lg:text-4xl">Parameters</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>remoteConfig: RemoteConfig</code> - The remote config instance. If you put the <Button
@@ -42,7 +47,7 @@
 				database instance from the context.
 			</li>
 		</ul>
-		<h2 class="text-3xl lg:text-4xl">Properties</h2>
+		<h2 id="properties" class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>subscribe: ((val: boolean) => void)) => void;</code> - Subscribe method for the Svelte

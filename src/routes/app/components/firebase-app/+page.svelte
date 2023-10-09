@@ -25,14 +25,16 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl xl:text-6xl">&lt;FirebaseApp&gt;</h1>
+		<h1 class="font-mono text-4xl font-black lg:text-5xl xl:text-6xl" id="firebase-app">
+			&lt;FirebaseApp&gt;
+		</h1>
 		<p class="max-w-prose">
 			The <code>&lt;FirebaseApp&gt;</code> component is the root of your Firebase app. It provides the
 			SDKs to all the other components without having to import them again.
 		</p>
 		<ol>
 			<li>
-				<h2 class="text-3xl lg:text-4xl">Props</h2>
+				<h2 class="text-3xl lg:text-4xl" id="props">Props</h2>
 				<ul>
 					<li><code>auth?</code> <span>-</span> Firebase Auth Instance</li>
 					<li><code>firestore?</code> <span>-</span> Firebase Firestore Instance</li>
@@ -42,7 +44,7 @@
 				</ul>
 			</li>
 			<li>
-				<h2 class="text-3xl lg:text-4xl">Examples</h2>
+				<h2 class="text-3xl lg:text-4xl" id="examples">Examples</h2>
 				<p class="max-w-prose">
 					Here's an example of how to use the <code>&lt;FirebaseApp&gt;</code> component.
 				</p>

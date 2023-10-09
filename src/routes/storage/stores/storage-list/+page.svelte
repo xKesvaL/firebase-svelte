@@ -26,12 +26,14 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl">createStorageListStore()</h1>
+		<h1 id="create-storage-list-store" class="font-mono text-4xl font-black lg:text-5xl">
+			createStorageListStore()
+		</h1>
 		<p class="max-w-prose">
 			<code>createStorageListStore(storage, ref, options)</code> creates a store that will contain a
 			list of files at the given reference. The store will update when the list changes.
 		</p>
-		<h2 class="text-3xl lg:text-4xl">Parameters</h2>
+		<h2 id="parameters" class="text-3xl lg:text-4xl">Parameters</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>storage: FirebaseStorage</code> - The firebase storage instance. If you put the <Button
@@ -48,7 +50,7 @@
 				<code>options?: StorageListStoreOptions</code> - Options for the store.
 			</li>
 		</ul>
-		<h2 class="text-3xl lg:text-4xl">Properties</h2>
+		<h2 id="properties" class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>subscribe: ((val: ListResult) => void)) => void</code> - Subscribe method for the Svelte
@@ -64,7 +66,7 @@
 				<code>error: Error | null</code> - Error if any.
 			</li>
 		</ul>
-		<h2>Types</h2>
+		<h2 id="types" class="text-3xl lg:text-4xl">Types</h2>
 		<Code filename="" language="javascript">
 			{`interface StorageListStoreOptions<T> {
   subscribe: ((val: ListResult) => void) => void;

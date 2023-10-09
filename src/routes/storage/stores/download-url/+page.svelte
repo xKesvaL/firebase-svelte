@@ -26,12 +26,14 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl">createDownloadUrlStore()</h1>
+		<h1 id="create-download-url-store" class="font-mono text-4xl font-black lg:text-5xl">
+			createDownloadUrlStore()
+		</h1>
 		<p class="max-w-prose">
 			<code>createDownloadUrlStore(storage, ref, options)</code> creates a store that will contain the
 			url for a given file.
 		</p>
-		<h2 class="text-3xl lg:text-4xl">Parameters</h2>
+		<h2 id="parameters" class="text-3xl lg:text-4xl">Parameters</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>storage: FirebaseStorage</code> - The firebase storage instance. If you put the <Button
@@ -48,7 +50,7 @@
 				<code>options?: DownloadUrlStoreOptions</code> - Options for the store.
 			</li>
 		</ul>
-		<h2 class="text-3xl lg:text-4xl">Properties</h2>
+		<h2 id="properties" class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>subscribe: ((val: string | null) => void)) => void</code> - Subscribe method for the Svelte
@@ -64,7 +66,7 @@
 				<code>error: Error | null</code> - Error if any.
 			</li>
 		</ul>
-		<h2>Types</h2>
+		<h2 id="types" class="text-3xl lg:text-4xl">Types</h2>
 		<Code filename="" language="javascript">
 			{`interface DownloadUrlStoreOptions<T> {
   subscribe: ((val: string | null) => void) => void;

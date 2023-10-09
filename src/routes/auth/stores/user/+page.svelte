@@ -25,12 +25,14 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl">createUserStore()</h1>
+		<h1 id="create-user-store" class="font-mono text-4xl font-black lg:text-5xl">
+			createUserStore()
+		</h1>
 		<p class="max-w-prose">
 			<code>createUserStore(authInstance)</code> creates a store that holds the current user's data.
 			The store is updated automatically when the user's data changes.
 		</p>
-		<h2 class="text-3xl lg:text-4xl">Parameters</h2>
+		<h2 id="parameters" class="text-3xl lg:text-4xl">Parameters</h2>
 		<ul class="max-w-prose">
 			<li>
 				<code>authInstance: Auth</code> - The firebase auth instance. If you put the <Button
@@ -41,7 +43,7 @@
 				auth instance from the context.
 			</li>
 		</ul>
-		<h2 class="text-3xl lg:text-4xl">Properties</h2>
+		<h2 id="properties" class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>subscribe: ((auth: Auth) => void)) => void;</code> - Subscribe method for the Svelte store.

@@ -26,7 +26,9 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="text-4xl font-black lg:text-5xl xl:text-6xl">Firebase Context</h1>
+		<h1 class="text-4xl font-black lg:text-5xl xl:text-6xl" id="firebase-context">
+			Firebase Context
+		</h1>
 		<p class="max-w-prose">
 			There are some cases where you need to access the Firebase SDKs directly. For example, if you
 			want to use any method from <code>firebase/auth</code> to log in your users. In this case, you
@@ -34,7 +36,7 @@
 		</p>
 		<ul>
 			<li>
-				<h2 class="text-3xl lg:text-4xl">Why?</h2>
+				<h2 class="text-3xl lg:text-4xl" id="why">Why?</h2>
 				<p class="max-w-prose">
 					This might look weird to you because you would say: "Why can't I just import the Firebase
 					SDKs I put in the <code>FirebaseApp</code> component?". You can, but this means you have
@@ -45,8 +47,10 @@
 				</p>
 			</li>
 			<li>
-				<h2 class="text-3xl lg:text-4xl">Methods</h2>
-				<h3 class="mt-4 font-mono text-2xl font-black lg:text-3xl">getFirebaseContext()</h3>
+				<h2 class="text-3xl lg:text-4xl" id="methods">Methods</h2>
+				<h3 class="mt-4 font-mono text-2xl font-black lg:text-3xl" id="get-firebase-context">
+					getFirebaseContext()
+				</h3>
 				<p class="max-w-prose">
 					<code
 						>getFirebaseContext(sdks: <Button
@@ -58,7 +62,9 @@
 					is a method that returns the Firebase SDKs you defined in the <code>FirebaseApp</code> component.
 					You can use it to access the SDKs directly.
 				</p>
-				<h3 class="mt-8 font-mono text-2xl font-black lg:text-3xl">updateFirebaseContext()</h3>
+				<h3 class="mt-8 font-mono text-2xl font-black lg:text-3xl" id="update-firebase-context">
+					updateFirebaseContext()
+				</h3>
 				<p class="max-w-prose">
 					<code
 						>updateFirebaseContext(sdks: <Button
@@ -76,7 +82,7 @@
 				</p>
 			</li>
 			<li>
-				<h2 class="text-3xl lg:text-4xl">Types</h2>
+				<h2 class="text-3xl lg:text-4xl" id="types">Types</h2>
 				<h3 class="font-mono text-2xl font-black lg:text-3xl" id="FirebaseSDKContext">
 					FirebaseSDKContext
 				</h3>

@@ -25,12 +25,14 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl">createUploadTaskStore()</h1>
+		<h1 id="create-upload-task-store" class="font-mono text-4xl font-black lg:text-5xl">
+			createUploadTaskStore()
+		</h1>
 		<p class="max-w-prose">
 			<code>createUploadTaskStore(storage, ref, data, metadata)</code> creates a store that will upload
 			a file to a reference.
 		</p>
-		<h2 class="text-3xl lg:text-4xl">Parameters</h2>
+		<h2 id="parameters" class="text-3xl lg:text-4xl">Parameters</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>storage: FirebaseStorage</code> - The firebase storage instance. If you put the <Button
@@ -50,7 +52,7 @@
 				<code>metadata?: UploadMetadata</code> - Options for the store.
 			</li>
 		</ul>
-		<h2 class="text-3xl lg:text-4xl">Properties</h2>
+		<h2 id="properties" class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
 				<code>subscribe: ((val: string | null) => void)) => void</code> - Subscribe method for the Svelte

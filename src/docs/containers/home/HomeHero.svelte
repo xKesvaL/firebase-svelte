@@ -10,7 +10,7 @@
 	<div class="container flex h-full flex-col gap-8 py-8 xl:py-24">
 		<div class="flex flex-col gap-8 xl:flex-row">
 			<div>
-				<h1 class="my-4 flex items-center gap-2 text-5xl md:gap-0 lg:text-6xl">
+				<h1 class="my-4 flex items-center gap-2 text-5xl md:gap-0 lg:text-6xl" id="firebase-svelte">
 					<span class="block">🔥</span>
 					Firebase Svelte
 				</h1>
@@ -53,7 +53,7 @@
 			</Code>
 		</div>
 		<div class="md:p-4">
-			<h2 class="mb-4 text-3xl lg:text-4xl">Okay but why?</h2>
+			<h2 class="mb-4 text-3xl lg:text-4xl" id="but-why">Okay but why?</h2>
 			<p class=" max-w-prose">
 				Let's be honest. Firebase APIs can sometimes be annoying to work with with their callbacks
 				and all, although they are very powerful. Firebase Svelte aims to help to :
@@ -75,7 +75,7 @@
 <section class="border-t-[1px]">
 	<div class="container flex h-full flex-col gap-8 py-8 xl:py-24">
 		<div class="flex flex-col gap-4 md:p-4">
-			<h2 class="text-3xl lg:text-4xl">Stores</h2>
+			<h2 class="text-3xl lg:text-4xl" id="stores">Stores</h2>
 			<p class="max-w-prose">
 				Every store is reactive so it updates when the data changes, and it will unsubscribe when
 				the component is unmounted.
@@ -109,7 +109,7 @@
 			</Code>
 		</div>
 		<div class="flex flex-col gap-4 md:p-4">
-			<h2 class="mb-4 text-3xl lg:text-4xl">Components</h2>
+			<h2 class="mb-4 text-3xl lg:text-4xl" id="components">Components</h2>
 			<p class="max-w-prose">
 				Altough components also use stores, they might be easier to use for some cases such as
 				simply getting data from a collection or a document.
@@ -119,7 +119,7 @@
 				example below shows.
 			</p>
 			<Code filename="+page.svelte" language="html">
-					{`
+				{`
 <script>
  import { Collection, Doc, User } from 'firebase-svelte';
  import { firestore, auth } from '$lib/firebase';

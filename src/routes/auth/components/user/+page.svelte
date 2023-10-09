@@ -26,8 +26,8 @@
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
-		<h1 class="font-mono text-4xl font-black lg:text-5xl">&lt;User&gt;</h1>
-		<h2 class="text-3xl xl:text-4xl">Props</h2>
+		<h1 id="user" class="font-mono text-4xl font-black lg:text-5xl">&lt;User&gt;</h1>
+		<h2 id="props" class="text-3xl xl:text-4xl">Props</h2>
 		<ul class="max-w-prose">
 			<li>
 				<code>auth?</code> - The firebase auth instance, optional if you put the <Button
@@ -37,9 +37,9 @@
 				> component at the root of your app, or higher than where you're using this component.
 			</li>
 		</ul>
-		<h2 class="text-3xl xl:text-4xl">Slots & Props</h2>
+		<h2 id="slot-props" class="text-3xl xl:text-4xl">Slots & Props</h2>
 		<div class="flex flex-col gap-4">
-			<h3 class="font-mono text-2xl font-bold lg:text-3xl">default</h3>
+			<h3 id="slot-default" class="font-mono text-2xl font-bold lg:text-3xl">default</h3>
 			<p class="max-w-prose">The default slot is rendered when the user is signed in.</p>
 			<ul class="flex max-w-prose flex-col gap-2">
 				<li>
@@ -51,11 +51,11 @@
 			</ul>
 		</div>
 		<div class="flex flex-col gap-4">
-			<h3 class="font-mono text-2xl font-bold lg:text-3xl">loading</h3>
+			<h3 id="slot-loading" class="font-mono text-2xl font-bold lg:text-3xl">loading</h3>
 			<p class="max-w-prose">The loading slot.</p>
 		</div>
 		<div class="flex flex-col gap-4">
-			<h3 class="font-mono text-2xl font-bold lg:text-3xl">signedOut</h3>
+			<h3 id="slot-signed-out" class="font-mono text-2xl font-bold lg:text-3xl">signedOut</h3>
 			<p class="max-w-prose">The signedOut slot is rendered when the user is signed out.</p>
 			<ul class="flex max-w-prose flex-col gap-2">
 				<li>

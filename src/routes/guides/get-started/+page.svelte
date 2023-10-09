@@ -26,19 +26,19 @@
 
 <section>
 	<div class="container flex flex-col gap-4 py-8 lg:py-16 xl:py-24">
-		<h1 class="text-5xl lg:text-6xl">⭐ Get Started</h1>
+		<h1 id="get-started" class="text-5xl lg:text-6xl">⭐ Get Started</h1>
 		<p class="max-w-prose">
 			This example works in both Svelte and SvelteKit, but we recommend you to use SvelteKit as it
 			can be used just like svelte, with more functionnalities.
 		</p>
 		<ol class="py-4">
 			<li>
-				<h2 class="text-3xl">1. Install</h2>
+				<h2 id="install" class="text-3xl">1. Install</h2>
 				<p class="max-w-prose">Install the package from npm:</p>
 				<Code filename="" language="bash">npm install firebase-svelte firebase</Code>
 			</li>
 			<li>
-				<h2 class="text-3xl">2. Initialize</h2>
+				<h2 id="initialize" class="text-3xl">2. Initialize</h2>
 				<p class="max-w-prose">
 					Initalize firebase using your config and add the <code>`&lt;FirebaseApp&gt;`</code>
 					component somewhere in your project, typically in the <code>`+layout.svelte`</code> file to
@@ -72,7 +72,7 @@
 				</Code>
 			</li>
 			<li>
-				<h2 class="text-3xl">3. Use as much as you want</h2>
+				<h2 id="use" class="text-3xl">3. Use as much as you want</h2>
 				<p class="max-w-prose">Now you can use any component you want, for example :</p>
 				<Code filename="+page.svelte" language="html">
 					<pre>
