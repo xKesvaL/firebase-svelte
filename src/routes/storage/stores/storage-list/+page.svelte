@@ -1,7 +1,28 @@
 <script>
 	import Code from '$docs/components/Code.svelte';
 	import { Button } from '$docs/ui/button';
+
+	const title = `Storage List Store | Firebase Svelte`;
+	const description = `createStorageListStore(storage, ref, options) creates a store that will contain a list of files at the given reference. The store will update when the list changes.`;
+	const url = `https://firebase-svelte.vercel.app/storage/stores/storage-list`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">

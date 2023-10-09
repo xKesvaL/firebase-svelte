@@ -1,7 +1,28 @@
 <script>
 	import { ROUTES } from '$docs/config';
 	import { Button } from '$docs/ui/button';
+
+	const title = `UploadTask Component | Firebase Svelte`;
+	const description = `The <UploadTask> component is a component that will render the upload task of a file in the storage.`;
+	const url = `https://firebase-svelte.vercel.app/storage/components/upload-task`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
