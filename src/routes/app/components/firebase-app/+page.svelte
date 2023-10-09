@@ -1,6 +1,27 @@
 <script>
 	import Code from '$docs/components/Code.svelte';
+
+	const title = `Firebase App Component | Firebase Svelte`;
+	const description = `The <FirebaseApp> component is the root of your Firebase app. It provides the SDKs to all the other components without having to import them again.`;
+	const url = `https://firebase-svelte.vercel.app/app/components/firebase-app`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">

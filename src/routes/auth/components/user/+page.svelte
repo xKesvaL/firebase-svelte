@@ -1,7 +1,28 @@
 <script>
 	import { ROUTES } from '$docs/config';
 	import { Button } from '$docs/ui/button';
+
+	const title = `User Component | Firebase Svelte`;
+	const description = `The <User> component is a component that renders different content depending on the user's auth state and gives you access to the user object.`;
+	const url = `https://firebase-svelte.vercel.app/auth/components/user`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
@@ -18,7 +39,7 @@
 		</ul>
 		<h2 class="text-3xl xl:text-4xl">Slots & Props</h2>
 		<div class="flex flex-col gap-4">
-			<h3 class="text-2xl lg:text-3xl font-mono font-bold">default</h3>
+			<h3 class="font-mono text-2xl font-bold lg:text-3xl">default</h3>
 			<p class="max-w-prose">The default slot is rendered when the user is signed in.</p>
 			<ul class="flex max-w-prose flex-col gap-2">
 				<li>

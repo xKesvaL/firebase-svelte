@@ -9,8 +9,8 @@ export const BRAND = {
 		dark: '/images/logos/logo.png',
 		light: '/images/logos/logo.png'
 	},
-	name: 'Starter',
-	url: 'https://starter.kesval.com'
+	name: 'Firebase Svelte',
+	url: 'https://firebase-svelte.vercel.app'
 } as const satisfies Brand;
 
 export const ROUTES = {

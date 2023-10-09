@@ -1,7 +1,28 @@
 <script>
 	import { ROUTES } from '$docs/config';
 	import { Button } from '$docs/ui/button';
+
+	const title = `Remote Config Component | Firebase Svelte`;
+	const description = `The <RemoteConfig> component is a component that renders different content depending on the data in a remote config and gives you access to the remote config instance.`;
+	const url = `https://firebase-svelte.vercel.app/remote-config/components/remote-config`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">

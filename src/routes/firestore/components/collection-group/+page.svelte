@@ -1,7 +1,28 @@
 <script>
 	import { ROUTES } from '$docs/config';
 	import { Button } from '$docs/ui/button';
+
+	const title = `Collection Group Component | Firebase Svelte`;
+	const description = `The <CollectionGroup> component is a component that renders different content depending on the data in a collection group and gives you access to the collection group reference.`;
+	const url = `https://firebase-svelte.vercel.app/firestore/components/collection-group`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">

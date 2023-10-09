@@ -1,7 +1,28 @@
 <script>
 	import Code from '$docs/components/Code.svelte';
 	import { Button } from '$docs/ui/button';
+
+	const title = `Node List Store | Firebase Svelte`;
+	const description = `The <Node> component is a component that renders different content depending on the data in a node and gives you access to the node reference.`;
+	const url = `https://firebase-svelte.vercel.app/realtime-db/stores/node-list`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
@@ -33,8 +54,8 @@
 		<h2 class="text-3xl lg:text-4xl">Properties</h2>
 		<ul class="flex max-w-prose flex-col gap-4">
 			<li>
-				<code>subscribe: ((val: T) => void)) => void;</code> - Subscribe method for the Svelte store. Allows for
-				the `$store` syntax.
+				<code>subscribe: ((val: T) => void)) => void;</code> - Subscribe method for the Svelte store.
+				Allows for the `$store` syntax.
 			</li>
 			<li>
 				<code>ref: DatabaseReference</code> - The node list reference used to create the store.

@@ -12,6 +12,7 @@
 	import Toasts from '$docs/containers/layout/Toasts.svelte';
 	import Footer from '$docs/containers/layout/Footer.svelte';
 	import { sidebarShown } from '$docs/stores/sidebar';
+	import { BRAND } from '$docs/config';
 
 	onNavigate((navigation) => {
 		sidebarShown.set(false);
@@ -26,6 +27,11 @@
 		});
 	});
 </script>
+
+<svelte:head>
+	<meta content={BRAND.author.name} name="copyright" />
+	<meta content={BRAND.name} name="og:site_name" />
+</svelte:head>
 
 <div class="flex min-h-screen flex-col">
 	<Header />

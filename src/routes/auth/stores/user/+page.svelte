@@ -1,6 +1,27 @@
 <script>
 	import { Button } from '$docs/ui/button';
+
+	const title = `User Store | Firebase Svelte`;
+	const description = `The user store is a store that holds the current user's data.`;
+	const url = `https://firebase-svelte.vercel.app/auth/stores/user`;
+	const image = ``;
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta name="og:description" content={description} />
+	<meta name="twitter:description" content={description} />
+
+	<meta name="og:url" content={url} />
+	<meta name="twitter:url" content={url} />
+
+	<meta name="og:image" content={image} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <section>
 	<div class="container flex flex-col gap-8 py-8 lg:py-16 xl:py-24">
