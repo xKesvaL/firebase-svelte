@@ -1,4 +1,4 @@
-import { BRAND } from '$lib/config';
+import { BRAND } from '$docs/config';
 
 export async function GET() {
 	const files = import.meta.glob('$routes/**/*.{svelte,md}');
@@ -35,7 +35,7 @@ export async function GET() {
 		ResponseToReturn += `
             <url>
                 <loc>${url}</loc>
-                <changefreq>monthly</changefreq>
+                <changefreq>weekly</changefreq>
                 <priority>0.9</priority>
             </url>`;
 	}

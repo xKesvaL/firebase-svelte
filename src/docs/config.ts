@@ -1,3 +1,18 @@
+import type { Brand } from './typings/standard';
+
+export const BRAND = {
+	author: {
+		name: 'KesvaL',
+		url: 'https://kesval.com'
+	},
+	logo: {
+		dark: '/images/logos/logo.png',
+		light: '/images/logos/logo.png'
+	},
+	name: 'Starter',
+	url: 'https://starter.kesval.com'
+} as const satisfies Brand;
+
 export const ROUTES = {
 	home: '/',
 	guideGetstarted: '/guides/get-started',
