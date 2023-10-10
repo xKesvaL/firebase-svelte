@@ -7,6 +7,7 @@
 	import { ROUTES } from '$docs/config';
 	import { Badge } from '$docs/ui/badge';
 	import { Input } from '$docs/ui/input';
+	import Search from '$docs/components/Search.svelte';
 </script>
 
 <header
@@ -31,7 +32,7 @@
 	<Badge>v{__PKG_VERSION__ ? __PKG_VERSION__.split('.')[0] : 'x'}</Badge>
 
 	<div class="ml-auto flex items-center gap-4">
-		<Input type="search" placeholder="Search" class="hidden md:flex" />
+		<Search />
 		<div class="flex-shrink-0">
 			<ThemeSwitcher />
 		</div>

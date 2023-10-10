@@ -35,6 +35,8 @@
 		"svelte": ">=3.54.0"
 	},
 	"devDependencies": {
+		"@docsearch/css": "3",
+		"@docsearch/js": "3",
 		"@formkit/auto-animate": "^0.8.0",
 		"@kesval/design": "^4.1.2",
 		"@sveltejs/adapter-auto": "^2.0.0",

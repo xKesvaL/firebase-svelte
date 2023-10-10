@@ -1,0 +1,35 @@
+#docsearch button {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-inline: 0;
+	width: 100%;
+
+	background: hsl(var(--base-100));
+	transition: 0.3s ease;
+
+	&:hover {
+		box-shadow: none;
+		background: hsl(var(--base-50));
+	}
+
+	span {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+}
+
+.DocSearch {
+	.DocSearch-Modal {
+		background: hsl(var(--base-50));
+
+		.DocSearch-Hit-source {
+			background: hsl(var(--base-50));
+		}
+	}
+
+	.DocSearch-Footer {
+		background: hsl(var(--base-100));
+	}
+}
