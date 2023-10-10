@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Search from '$docs/components/Search.svelte';
 	import { ROUTES } from '$docs/config';
 	import { sidebarShown } from '$docs/stores/sidebar.js';
 	import { Button } from '$docs/ui/button';
@@ -12,7 +13,6 @@
 		: '-translate-x-full'} bottom-0 left-0 top-20 z-10 flex w-screen flex-shrink-0 flex-col overflow-y-scroll bg-card p-4 shadow-foreground/25 transition-transform lg:w-80 lg:translate-x-0 lg:shadow-xl"
 	style="view-transition-name: sidebar;"
 >
-	<Input type="search" placeholder="Search" class="mb-4 md:hidden" />
 	<div class="flex flex-col">
 		<h2 class="mb-2 text-xl">Guides</h2>
 		<Button

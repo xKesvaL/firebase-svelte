@@ -18,6 +18,10 @@
 		align-items: center;
 		gap: 0.25rem;
 	}
+
+	.DocSearch-Button-Container svg {
+		flex-shrink: 0;
+	}
 }
 
 .DocSearch {

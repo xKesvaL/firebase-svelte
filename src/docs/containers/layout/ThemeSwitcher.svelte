@@ -51,6 +51,10 @@
 		align-items: center;
 		gap: 0.5rem;
 
+		.label {
+			font-size: 0.7rem;
+		}
+
 		&:hover,
 		&:focus {
 			.label {
@@ -80,14 +84,14 @@
 		.label {
 			transition: all 0.25s ease-in-out;
 			text-transform: uppercase;
-			font-size: 0.75rem;
 			opacity: 0;
 			transform-origin: right;
 			transform: scaleX(0);
 			color: hsl(var(--foreground));
-			width: 40px;
+			font-size: 0.1rem;
 
 			@include mq(md) {
+				font-size: 0.75rem;
 				transform: scaleX(1);
 				opacity: 1;
 			}
