@@ -88,7 +88,7 @@
 			transform-origin: right;
 			transform: scaleX(0);
 			color: hsl(var(--foreground));
-			font-size: 0.1rem;
+			font-size: 0.1px;
 
 			@include mq(md) {
 				font-size: 0.75rem;

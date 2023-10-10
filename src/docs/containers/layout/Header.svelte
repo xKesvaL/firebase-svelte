@@ -31,10 +31,10 @@
 	</Button>
 	<Badge>v{__PKG_VERSION__ ? __PKG_VERSION__.split('.')[0] : 'x'}</Badge>
 
-	<div class="ml-auto flex items-center gap-4">
-		<Search />
+	<div class="ml-auto flex items-center gap-2 md:gap-4">
 		<div class="flex-shrink-0">
 			<ThemeSwitcher />
 		</div>
+		<Search />
 	</div>
 </header>

@@ -18,4 +18,6 @@
 	});
 </script>
 
-<Button id="docsearch" class="w-10 overflow-hidden rounded-full px-0.5 py-2 md:w-48">Search</Button>
+<Button id="docsearch" class="w-10 flex-shrink-0 overflow-hidden rounded-full px-0.5 py-2 md:w-48"
+	>Search</Button
+>
