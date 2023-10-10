@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { Button } from '$docs/ui/button/index.js';
 	import ThemeSwitcher from './ThemeSwitcher.svelte';
-	import IconMenu2 from '$docs/icons/IconMenu2.svelte';
 
 	import { sidebarShown } from '$docs/stores/sidebar.js';
 	import { ROUTES } from '$docs/config';
 	import { Badge } from '$docs/ui/badge';
-	import { Input } from '$docs/ui/input';
 	import Search from '$docs/components/Search.svelte';
+	import Hamburger from '$docs/components/Hamburger.svelte';
 </script>
 
 <header
@@ -23,7 +22,7 @@
 		}}
 		aria-label="Open sidebar"
 	>
-		<IconMenu2 />
+		<Hamburger close={$sidebarShown} />
 	</Button>
 
 	<Button variant="link" class="h-auto p-0 text-base text-foreground lg:text-lg" href={ROUTES.home}>
