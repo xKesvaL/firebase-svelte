@@ -6,7 +6,7 @@
 	import type { FirebaseStorage } from 'firebase/storage';
 	import type { RemoteConfig } from 'firebase/remote-config';
 
-	export let auth: Auth;
+	export let auth: Auth | undefined = undefined;
 	export let firestore: Firestore | undefined = undefined;
 	export let realtimeDb: Database | undefined = undefined;
 	export let storage: FirebaseStorage | undefined = undefined;
