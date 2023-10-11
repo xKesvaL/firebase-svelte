@@ -1,6 +1,6 @@
 {
 	"name": "firebase-svelte",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Integrate Svelte stores with Firebase easily.",
 	"license": "MIT",
 	"scripts": {
@@ -92,7 +92,7 @@
 		"remote config",
 		"storage"
 	],
-	"homepage": "https://firebase-svelte.kesval.app",
+	"homepage": "https://firebase-svelte.vercel.app",
 	"bugs": {
 		"url": "https://github.com/xKesvaL/firebase-svelte/issues",
 		"email": "jabeddou@gmail.com"
