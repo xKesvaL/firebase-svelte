@@ -32,9 +32,8 @@
 	<slot {remoteConfig} />
 {:else if remoteConfig !== undefined && $configActivated === false}
 	<slot name="disabled" />
-{:else if configActivated.loading}
+{:else if configActivated?.loading}
 	<slot name="loading" />
 {:else}
 	<slot name="fallback" />
 {/if}
-```

@@ -10,6 +10,7 @@ import {
 	collection,
 	collectionGroup,
 	CollectionReference,
+	deleteDoc,
 	doc,
 	onSnapshot,
 	query,
@@ -118,6 +119,8 @@ export interface CollectionStore<T> extends Readable<T[]> {
 		first: unknown;
 		last: unknown;
 	};
+	add: (key: string, value: T) => Promise<DocumentReference<T> | void>;
+	remove: (key: string) => Promise<void>;
 }
 
 export interface CollectionStoreOptions<T> extends StoreOptions {
@@ -151,6 +154,12 @@ export function createCollectionStore<T = unknown>(
 			id: '',
 			get meta() {
 				return { first: null, last: null };
+			},
+			add: async () => {
+				return;
+			},
+			remove: async () => {
+				return;
 			}
 		};
 
@@ -215,6 +224,12 @@ export function createCollectionStore<T = unknown>(
 		id: collectionRef.id,
 		get meta() {
 			return meta;
+		},
+		add: async (key, value) => {
+			return await setDoc(doc(collectionRef, key), value as never);
+		},
+		remove: async (key) => {
+			return await deleteDoc(doc(collectionRef, key));
 		}
 	};
 }
