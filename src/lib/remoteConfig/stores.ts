@@ -11,7 +11,6 @@ import {
 	isSupported,
 	type RemoteConfig
 } from 'firebase/remote-config';
-import { getFirebaseContext } from '$lib/sdk/stores';
 
 export interface RemoteConfigStoreOptions<T> extends Omit<StoreOptions, 'once'> {
 	startValue?: T;
@@ -24,16 +23,14 @@ export interface RemoteConfigStore<T> extends Readable<T> {
 
 /**
  *
- * @param {RemoteConfig | undefined | null} remoteConfig firebase remote config instance
+ * @param {RemoteConfig} remoteConfig firebase remote config instance
  * @param {RemoteConfigStoreOptions<T>} options the store options
  * @returns {RemoteConfigStore<T>} a store with the fallack remote config value
  */
 function fallback<T>(
-	remoteConfig: RemoteConfig | undefined | null,
+	remoteConfig: RemoteConfig,
 	options: RemoteConfigStoreOptions<T> = {}
 ): RemoteConfigStore<T> | void {
-	remoteConfig = remoteConfig ?? getFirebaseContext().remoteConfig ?? null;
-
 	if (!remoteConfig) {
 		const { subscribe } = readable<T>(options.startValue);
 		const store = {
@@ -50,7 +47,7 @@ function fallback<T>(
 			return store;
 		}
 
-		logger('warn', 'Firestore was not initialized.');
+		logger('warn', 'Remote config was not initialized properly.');
 
 		return store;
 	}
@@ -58,14 +55,12 @@ function fallback<T>(
 
 /**
  *
- * @param {RemoteConfig | undefined | null} remoteConfig firebase remote config instance
+ * @param {RemoteConfig} remoteConfig firebase remote config instance
  * @returns {RemoteConfigStore<boolean | undefined>} a store with the remote config activation status
  */
 export function createRemoteConfigActivationStore(
-	remoteConfig: RemoteConfig | undefined | null
+	remoteConfig: RemoteConfig
 ): RemoteConfigStore<boolean | undefined> {
-	remoteConfig = remoteConfig ?? getFirebaseContext().remoteConfig ?? null;
-
 	const fallbackStore = fallback<boolean | undefined>(remoteConfig);
 
 	if (fallbackStore) {
@@ -104,18 +99,16 @@ export function createRemoteConfigActivationStore(
 
 /**
  *
- * @param {RemoteConfig | undefined | null} remoteConfig firebase remote config instance
+ * @param {RemoteConfig} remoteConfig firebase remote config instance
  * @param {string} key the remote config key
  * @param {RemoteConfigStoreOptions<T>} options the store options
  * @returns {RemoteConfigStore<T>} a store with the remote config value
  */
 export function createRemoteConfigValueStore<T = unknown>(
-	remoteConfig: RemoteConfig | undefined | null,
+	remoteConfig: RemoteConfig,
 	key: string,
 	options: RemoteConfigStoreOptions<T> = {}
 ): RemoteConfigStore<T> {
-	remoteConfig = remoteConfig ?? getFirebaseContext().remoteConfig ?? null;
-
 	const fallbackStore = fallback<T>(remoteConfig, options);
 
 	if (fallbackStore) {
@@ -142,18 +135,16 @@ export function createRemoteConfigValueStore<T = unknown>(
 
 /**
  *
- * @param {RemoteConfig | undefined | null} remoteConfig firebase remote config instance
+ * @param {RemoteConfig} remoteConfig firebase remote config instance
  * @param {string} key the remote config key
  * @param {RemoteConfigStoreOptions<boolean>} options the store options
  * @returns {RemoteConfigStore<boolean>} a store with the remote config boolean
  */
 export function createRemoteConfigBooleanStore(
-	remoteConfig: RemoteConfig | undefined | null,
+	remoteConfig: RemoteConfig,
 	key: string,
 	options: RemoteConfigStoreOptions<boolean> = {}
 ): RemoteConfigStore<boolean> {
-	remoteConfig = remoteConfig ?? getFirebaseContext().remoteConfig ?? null;
-
 	const fallbackStore = fallback<boolean>(remoteConfig, options);
 
 	if (fallbackStore) {
@@ -180,18 +171,16 @@ export function createRemoteConfigBooleanStore(
 
 /**
  *
- * @param {RemoteConfig | undefined | null} remoteConfig firebase remote config instance
+ * @param {RemoteConfig} remoteConfig firebase remote config instance
  * @param {string} key the remote config key
  * @param {RemoteConfigStoreOptions<number>} options the store options
  * @returns {RemoteConfigStore<number>} a store with the remote config number
  */
 export function createRemoteConfigNumberStore(
-	remoteConfig: RemoteConfig | undefined | null,
+	remoteConfig: RemoteConfig,
 	key: string,
 	options: RemoteConfigStoreOptions<number> = {}
 ): RemoteConfigStore<number> {
-	remoteConfig = remoteConfig ?? getFirebaseContext().remoteConfig ?? null;
-
 	const fallbackStore = fallback<number>(remoteConfig, options);
 
 	if (fallbackStore) {
@@ -218,18 +207,16 @@ export function createRemoteConfigNumberStore(
 
 /**
  *
- * @param {RemoteConfig | undefined | null} remoteConfig firebase remote config instance
+ * @param {RemoteConfig} remoteConfig firebase remote config instance
  * @param {string} key the remote config key
  * @param {RemoteConfigStoreOptions<string>} options the store options
  * @returns {RemoteConfigStore<string>} a store with the remote config string
  */
 export function createRemoteConfigStringStore(
-	remoteConfig: RemoteConfig | undefined | null,
+	remoteConfig: RemoteConfig,
 	key: string,
 	options: RemoteConfigStoreOptions<string> = {}
 ): RemoteConfigStore<string> {
-	remoteConfig = remoteConfig ?? getFirebaseContext().remoteConfig ?? null;
-
 	const fallbackStore = fallback<string>(remoteConfig, options);
 
 	if (fallbackStore) {

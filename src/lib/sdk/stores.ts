@@ -3,14 +3,14 @@ import type { Auth } from 'firebase/auth';
 import { getContext, setContext } from 'svelte';
 import type { FirebaseStorage } from 'firebase/storage';
 import type { Database } from 'firebase/database';
-import type { RemoteConfig } from 'firebase/remote-config';
+import type { FirebaseApp } from 'firebase/app';
 
 export interface FirebaseSDKContext {
+	app?: FirebaseApp;
 	auth?: Auth;
 	firestore?: Firestore;
 	rtdb?: Database;
 	storage?: FirebaseStorage;
-	remoteConfig?: RemoteConfig;
 }
 
 export const contextKey = 'firebase-svelte-sdk';
