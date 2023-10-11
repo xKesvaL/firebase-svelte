@@ -27,8 +27,6 @@ export interface DocStoreOptions<T> extends StoreOptions {
 export interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' | 'update'> {
 	ref: DocumentReference<T> | null;
 	id: string;
-	loading: boolean;
-	error: Error | null;
 	set: (value: T) => Promise<unknown>;
 	update: (value: Partial<T>) => Promise<unknown>;
 }
@@ -55,12 +53,7 @@ export function createDocStore<T = unknown>(
 			subscribe,
 			ref: null,
 			id: '',
-			get loading() {
-				return false;
-			},
-			get error() {
-				return null;
-			},
+
 			set: async () => {
 				return;
 			},
@@ -78,8 +71,6 @@ export function createDocStore<T = unknown>(
 		return store;
 	}
 
-	let loading = startValue === undefined;
-	let error: Error | null = null;
 	const docRef = typeof ref === 'string' ? doc(firestore, ref) : ref;
 
 	const { subscribe } = writable<T | null>(startValue, (set) => {
@@ -92,12 +83,9 @@ export function createDocStore<T = unknown>(
 				}
 
 				set((data as T) ?? null);
-				loading = false;
 			},
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
-				error = err;
-				loading = false;
 			}
 		);
 
@@ -113,12 +101,7 @@ export function createDocStore<T = unknown>(
 		subscribe,
 		ref: docRef as DocumentReference<T>,
 		id: docRef.id,
-		get loading() {
-			return loading;
-		},
-		get error() {
-			return error;
-		},
+
 		set: async (value) => {
 			return await setDoc(docRef, value as never);
 		},
@@ -131,8 +114,6 @@ export function createDocStore<T = unknown>(
 export interface CollectionStore<T> extends Readable<T[]> {
 	ref: CollectionReference<T[]> | null | undefined;
 	id: string;
-	loading: boolean;
-	error: Error | null;
 	meta: {
 		first: unknown;
 		last: unknown;
@@ -168,12 +149,6 @@ export function createCollectionStore<T = unknown>(
 			subscribe,
 			ref: undefined,
 			id: '',
-			get loading() {
-				return false;
-			},
-			get error() {
-				return null;
-			},
 			get meta() {
 				return { first: null, last: null };
 			}
@@ -188,8 +163,6 @@ export function createCollectionStore<T = unknown>(
 		return store;
 	}
 
-	let loading = startValue === undefined;
-	let error: Error | null = null;
 	let meta = { first: null, last: null };
 	const collectionRef = typeof ref === 'string' ? collection(firestore, ref) : ref;
 	const q = query(collectionRef, ...queryConstraints);
@@ -218,22 +191,13 @@ export function createCollectionStore<T = unknown>(
 				})) as T[];
 
 				if (log) {
-					const type = loading ? 'New Query' : 'Updated Query';
-
-					logger(
-						'debug',
-						`CollectionStore: ${type} ${collectionRef.id} | ${data.length} hits`,
-						data
-					);
+					logger('debug', `CollectionStore: Query ${collectionRef.id} | ${data.length} hits`, data);
 				}
 				set(data);
-				loading = false;
 				meta = calcMeta(data);
 			},
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
-				error = err;
-				loading = false;
 			}
 		);
 
@@ -249,12 +213,6 @@ export function createCollectionStore<T = unknown>(
 		subscribe,
 		ref: collectionRef as CollectionReference<T[]>,
 		id: collectionRef.id,
-		get loading() {
-			return loading;
-		},
-		get error() {
-			return error;
-		},
 		get meta() {
 			return meta;
 		}
@@ -263,8 +221,6 @@ export function createCollectionStore<T = unknown>(
 
 export interface CollectionGroupStore<T> extends Readable<T[]> {
 	ref: Query<T[], DocumentData> | null | undefined;
-	loading: boolean;
-	error: Error | null;
 }
 
 /**
@@ -287,13 +243,7 @@ export function createCollectionGroupStore<T = unknown>(
 		const { subscribe } = writable<T[]>(startValue);
 		const store = {
 			subscribe,
-			ref: undefined,
-			get loading() {
-				return false;
-			},
-			get error() {
-				return null;
-			}
+			ref: undefined
 		};
 
 		if (!globalThis.window) {
@@ -305,8 +255,6 @@ export function createCollectionGroupStore<T = unknown>(
 		return store;
 	}
 
-	let loading = startValue === undefined;
-	let error: Error | null = null;
 	const collectionRef = typeof ref === 'string' ? collectionGroup(firestore, ref) : ref;
 
 	const { subscribe } = writable<T[]>(startValue, (set) => {
@@ -320,17 +268,12 @@ export function createCollectionGroupStore<T = unknown>(
 				})) as T[];
 
 				if (log) {
-					const type = loading ? 'New Query' : 'Updated Query';
-
-					logger('debug', `CollectionGroupStore: ${type} | ${data.length} hits`, data);
+					logger('debug', `CollectionGroupStore: Query | ${data.length} hits`, data);
 				}
 				set(data);
-				loading = false;
 			},
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
-				error = err;
-				loading = false;
 			}
 		);
 
@@ -344,12 +287,6 @@ export function createCollectionGroupStore<T = unknown>(
 
 	return {
 		subscribe,
-		ref: collectionRef as Query<T[], DocumentData>,
-		get loading() {
-			return loading;
-		},
-		get error() {
-			return error;
-		}
+		ref: collectionRef as Query<T[], DocumentData>
 	};
 }

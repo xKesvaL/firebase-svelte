@@ -8,7 +8,6 @@
 			data: Data[];
 			ref: Query<Data[]> | null | undefined;
 			count: number;
-			error: Error | null;
 		};
 		loading: Record<string, never>;
 		fallback: Record<string, never>;
@@ -30,8 +29,8 @@
 </script>
 
 {#if $store}
-	<slot data={$store} ref={store.ref} count={$store?.length ?? 0} error={store.error} />
-{:else if store.loading}
+	<slot data={$store} ref={store.ref} count={$store?.length ?? 0} />
+{:else if $store === undefined}
 	<slot name="loading" />
 {:else}
 	<slot name="fallback" />

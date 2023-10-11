@@ -9,7 +9,6 @@
 			data: Data[];
 			ref: CollectionReference<Data[]> | null | undefined;
 			count: number;
-			error: Error | null;
 			first: Data | null | unknown;
 			last: Data | null | unknown;
 		};
@@ -38,11 +37,10 @@
 		data={$store}
 		ref={store.ref}
 		count={$store?.length ?? 0}
-		error={store.error}
 		first={store.meta.first}
 		last={store.meta.last}
 	/>
-{:else if store.loading}
+{:else if $store === undefined}
 	<slot name="loading" />
 {:else}
 	<slot name="fallback" />

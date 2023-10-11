@@ -8,7 +8,6 @@
 		default: {
 			data: (Data & { [key: string]: any }) | null;
 			ref: DocumentReference<Data> | null;
-			error: Error | null;
 		};
 		loading: Record<string, never>;
 		fallback: Record<string, never>;
@@ -28,8 +27,8 @@
 </script>
 
 {#if $store}
-	<slot data={$store} ref={store.ref} error={store.error} />
-{:else if store.loading}
+	<slot data={$store} ref={store.ref} />
+{:else if $store === undefined}
 	<slot name="loading" />
 {:else}
 	<slot name="fallback" />
