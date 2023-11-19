@@ -3,7 +3,7 @@ import type {
 	DocumentReference,
 	Firestore,
 	Query,
-	QueryConstraint
+	QueryConstraint,
 } from 'firebase/firestore';
 import { readable, type Readable, writable, type Writable } from 'svelte/store';
 import {
@@ -15,7 +15,7 @@ import {
 	onSnapshot,
 	query,
 	setDoc,
-	updateDoc
+	updateDoc,
 } from 'firebase/firestore';
 import type { StoreOptions } from '$lib/types/index.js';
 import { logger } from '$lib/utils/logger.js';
@@ -41,7 +41,7 @@ export interface DocStore<T> extends Omit<Writable<T | undefined | null>, 'set' 
 export function createDocStore<T = unknown>(
 	firestore: Firestore | undefined | null,
 	ref: string | DocumentReference,
-	options: DocStoreOptions<T> = {}
+	options: DocStoreOptions<T> = {},
 ): DocStore<T> {
 	const { log, startValue, once } = options;
 	let unsubscribe: () => void;
@@ -60,7 +60,7 @@ export function createDocStore<T = unknown>(
 			},
 			update: async () => {
 				return;
-			}
+			},
 		};
 
 		if (!globalThis.window) {
@@ -87,7 +87,7 @@ export function createDocStore<T = unknown>(
 			},
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
-			}
+			},
 		);
 
 		if (once) {
@@ -108,7 +108,7 @@ export function createDocStore<T = unknown>(
 		},
 		update: async (value) => {
 			return await updateDoc(docRef, value as never);
-		}
+		},
 	};
 }
 
@@ -139,7 +139,7 @@ export function createCollectionStore<T = unknown>(
 	firestore: Firestore | undefined | null,
 	ref: string | CollectionReference,
 	queryConstraints: QueryConstraint[] = [],
-	options: CollectionStoreOptions<T> = {}
+	options: CollectionStoreOptions<T> = {},
 ): CollectionStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
@@ -160,7 +160,7 @@ export function createCollectionStore<T = unknown>(
 			},
 			remove: async () => {
 				return;
-			}
+			},
 		};
 
 		if (!globalThis.window) {
@@ -181,11 +181,11 @@ export function createCollectionStore<T = unknown>(
 		return val && val.length
 			? {
 					first: val[0],
-					last: val[val.length - 1]
+					last: val[val.length - 1],
 			  }
 			: {
 					first: null,
-					last: null
+					last: null,
 			  };
 	};
 
@@ -196,7 +196,7 @@ export function createCollectionStore<T = unknown>(
 				const data = snapshot.docs.map((docSnap) => ({
 					...docSnap.data(),
 					...(idField ? { [idField]: docSnap.id } : null),
-					...(refField ? { [refField]: docSnap.ref } : null)
+					...(refField ? { [refField]: docSnap.ref } : null),
 				})) as T[];
 
 				if (log) {
@@ -207,7 +207,7 @@ export function createCollectionStore<T = unknown>(
 			},
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
-			}
+			},
 		);
 
 		if (once) {
@@ -230,7 +230,7 @@ export function createCollectionStore<T = unknown>(
 		},
 		remove: async (key) => {
 			return await deleteDoc(doc(collectionRef, key));
-		}
+		},
 	};
 }
 
@@ -247,7 +247,7 @@ export interface CollectionGroupStore<T> extends Readable<T[]> {
 export function createCollectionGroupStore<T = unknown>(
 	firestore: Firestore | undefined | null,
 	ref: string | Query,
-	options: CollectionStoreOptions<T> = {}
+	options: CollectionStoreOptions<T> = {},
 ): CollectionGroupStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once, refField, idField } = { idField: 'id', ...options };
@@ -258,7 +258,7 @@ export function createCollectionGroupStore<T = unknown>(
 		const { subscribe } = writable<T[]>(startValue);
 		const store = {
 			subscribe,
-			ref: undefined
+			ref: undefined,
 		};
 
 		if (!globalThis.window) {
@@ -279,7 +279,7 @@ export function createCollectionGroupStore<T = unknown>(
 				const data = snapshot.docs.map((docSnap) => ({
 					...docSnap.data(),
 					...(idField ? { [idField]: docSnap.id } : null),
-					...(refField ? { [refField]: docSnap.ref } : null)
+					...(refField ? { [refField]: docSnap.ref } : null),
 				})) as T[];
 
 				if (log) {
@@ -289,7 +289,7 @@ export function createCollectionGroupStore<T = unknown>(
 			},
 			(err) => {
 				logger('error', `${err.code} ${err.name}, ${err.message}`);
-			}
+			},
 		);
 
 		if (once) {
@@ -302,6 +302,6 @@ export function createCollectionGroupStore<T = unknown>(
 
 	return {
 		subscribe,
-		ref: collectionRef as Query<T[], DocumentData>
+		ref: collectionRef as Query<T[], DocumentData>,
 	};
 }

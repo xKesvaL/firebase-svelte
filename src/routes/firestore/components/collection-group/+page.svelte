@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Collection Group Component | Firebase Svelte`;
 	const description = `The <CollectionGroup> component is a component that renders different content depending on the data in a collection group and gives you access to the collection group reference.`;

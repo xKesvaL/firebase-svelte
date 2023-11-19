@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Doc Component | Firebase Svelte`;
 	const description = `The <Doc> component is a component that renders different content depending on the data in a document and gives you access to the document reference`;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 	import docsearch from '@docsearch/js';
 
 	import '@docsearch/css';

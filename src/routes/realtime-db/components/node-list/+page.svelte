@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Node List Component | Firebase Svelte`;
 	const description = `The <NodeList> component is a component that renders different content depending on the data in a node and gives you access to the node reference.`;

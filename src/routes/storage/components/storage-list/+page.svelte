@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `StorageList Component | Firebase Svelte`;
 	const description = `The <StorageList> component is a component that will render a list of files in the storage.`;

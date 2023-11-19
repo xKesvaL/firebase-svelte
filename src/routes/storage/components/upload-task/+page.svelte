@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `UploadTask Component | Firebase Svelte`;
 	const description = `The <UploadTask> component is a component that will render the upload task of a file in the storage.`;

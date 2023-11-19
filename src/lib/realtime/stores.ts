@@ -29,7 +29,7 @@ export interface NodeStore<T> extends Omit<Writable<T | undefined | null>, 'set'
 export function createNodeStore<T = unknown>(
 	rtdb: Database | undefined | null,
 	ref: string | DatabaseReference,
-	options: RealtimeStoreOptions<T> = {}
+	options: RealtimeStoreOptions<T> = {},
 ): NodeStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once } = options;
@@ -53,7 +53,7 @@ export function createNodeStore<T = unknown>(
 			},
 			update: async () => {
 				return;
-			}
+			},
 		};
 		if (!globalThis.window) {
 			return store;
@@ -84,7 +84,7 @@ export function createNodeStore<T = unknown>(
 				logger('error', `${err.name} - ${err.message}`);
 				error = err;
 				loading = false;
-			}
+			},
 		);
 
 		if (once) {
@@ -110,7 +110,7 @@ export function createNodeStore<T = unknown>(
 		},
 		update: async (value) => {
 			return update(dataRef, value);
-		}
+		},
 	};
 }
 
@@ -131,7 +131,7 @@ export interface NodeListStore<T> extends Omit<Writable<T | undefined | null>, '
 export function createNodeListStore<T = unknown>(
 	rtdb: Database | undefined | null,
 	ref: string | DatabaseReference,
-	options: RealtimeStoreOptions<T> = {}
+	options: RealtimeStoreOptions<T> = {},
 ): NodeListStore<T> {
 	let unsubscribe: () => void;
 	const { log, startValue, once } = options;
@@ -149,7 +149,7 @@ export function createNodeListStore<T = unknown>(
 			},
 			get error() {
 				return null;
-			}
+			},
 		};
 		if (!globalThis.window) {
 			return store;
@@ -174,7 +174,7 @@ export function createNodeListStore<T = unknown>(
 					const childData = childSnapshot.val();
 					dataArr.push({
 						nodeKey: childSnapshot.ref.key,
-						...(typeof childData === 'object' ? childData : {})
+						...(typeof childData === 'object' ? childData : {}),
 					});
 				});
 
@@ -189,7 +189,7 @@ export function createNodeListStore<T = unknown>(
 				logger('error', `${err.name} - ${err.message}`);
 				error = err;
 				loading = false;
-			}
+			},
 		);
 
 		if (once) {
@@ -209,6 +209,6 @@ export function createNodeListStore<T = unknown>(
 		},
 		get error() {
 			return error;
-		}
+		},
 	};
 }

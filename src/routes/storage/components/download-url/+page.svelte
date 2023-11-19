@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `DownloadUrl Component | Firebase Svelte`;
 	const description = `The <DownloadUrl> component is a component that will render the download url of a file in the storage.`;

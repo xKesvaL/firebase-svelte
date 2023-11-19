@@ -1,5 +1,5 @@
 <script>
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `User Store | Firebase Svelte`;
 	const description = `The user store is a store that holds the current user's data.`;

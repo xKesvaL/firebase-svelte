@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IconCopy from '$docs/icons/IconCopy.svelte';
 	import { toasts } from '$docs/stores/toasts';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 	import Prism from 'prismjs';
 
 	export let filename: string = 'index.js';

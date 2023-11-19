@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$docs/ui/button/index.js';
+	import { Button } from '$docs/ui/button/index.svelte.js';
 	import IconArrowRight from '$docs/icons/IconArrowRight.svelte';
 	import IconCustomGithub from '$docs/icons/custom/IconCustomGithub.svelte';
 	import { ROUTES } from '$docs/config';

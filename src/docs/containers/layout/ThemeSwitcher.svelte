@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { theme } from '$docs/stores/theme.js';
+	import { theme } from '$docs/stores/theme.svelte.js';
 
 	const toggleTheme = () => {
-		if ($theme === 'auto') {
+		if (theme.value === 'auto') {
 			theme.set('light');
-		} else if ($theme === 'light') {
+		} else if (theme.value === 'light') {
 			theme.set('dark');
 		} else {
 			theme.set('auto');
@@ -20,10 +20,10 @@
 	</style>
 </noscript>
 
-<button class="theme-switcher" on:click={toggleTheme} data-theme={$theme} aria-controls="body">
-	<span class="visually-hidden">{$theme}</span>
+<button class="theme-switcher" on:click={toggleTheme} data-theme={theme.value} aria-controls="body">
+	<span class="visually-hidden">{theme.value}</span>
 	<span class="label">
-		{$theme === 'auto' ? 'Auto' : $theme === 'light' ? 'Light' : 'Dark'}
+		{theme.value === 'auto' ? 'Auto' : theme.value === 'light' ? 'Light' : 'Dark'}
 	</span>
 	<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
 		<mask id="moon">

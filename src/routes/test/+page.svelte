@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { auth } from '$docs/test/firebase';
-	import { Button } from '$docs/ui/button';
+	import { auth, firestore } from '$docs/test/firebase';
+	import { Button } from '$docs/ui/button/index.svelte';
 	import {
 		createDocStore,
 		createCollectionStore,
@@ -11,7 +11,11 @@
 		RemoteConfigNumber,
 		RemoteConfigString,
 		RemoteConfigValue,
-		DownloadUrl
+		DownloadUrl,
+		UserState,
+		DocState,
+		CollectionState,
+		NodeState,
 	} from '$lib';
 
 	import { signInAnonymously } from 'firebase/auth';
@@ -22,93 +26,93 @@
 		desc?: string;
 	}
 
-	const user = createUserStore();
-	const node = createNodeStore(null, 'messages/123');
-	const docStore = createDocStore<Post>(null, 'posts/123');
-	const colStore = createCollectionStore<Post>(null, 'posts');
+	const userState = new UserState(); // or createUserStore(auth)
+	const node = new NodeState(null, 'messages/123'); // or createNodeStore(null, 'messages/123');
+	const docStore = new DocState<Post>(null, 'posts/123'); // or createDocStore<Post>(null, 'posts/123');
+	const colStore = new CollectionState<Post>(null, 'posts'); // or createCollectionStore<Post>(null, 'posts');
 </script>
 
 <section class="container flex flex-col gap-8">
-	{#if $user}
-		hi {$user?.uid}
-		<Button on:click={() => user.signOut()}>Log out</Button>
-	{:else if $user === undefined}
+	{#if userState.user}
+		hi {userState.user?.uid}
+		<Button onclick={() => userState.signOut()}>Log out</Button>
+	{:else if userState.loading === true}
 		loading...
-	{:else if $user === null}
+	{:else}
 		<div>
-			<Button on:click={() => signInAnonymously(auth)}>Sign In</Button>
+			<Button onclick={() => signInAnonymously(auth)}>Sign In</Button>
 		</div>
 	{/if}
 
 	<div>
-		{#if $docStore === undefined}
+		{#if docStore.doc === undefined}
 			loading...
 		{:else}
 			<h1 class="text-lg">
-				{$docStore?.title}
+				{docStore.doc?.title}
 			</h1>
-			{$docStore?.desc || 'no desc'}
+			{docStore.doc?.desc || 'no desc'}
 		{/if}
 	</div>
 
 	<div class="flex gap-4">
-		<Button on:click={() => docStore.set({ id: $docStore?.id || '123', title: 'My Post' })}
+		<Button onclick={() => docStore.set({ id: docStore.doc?.id || '123', title: 'My Post' })}
 			>Title = My Post</Button
 		>
-		<Button on:click={() => docStore.update({ title: 'hello world', desc: 'hehe description' })}
+		<Button onclick={() => docStore.update({ title: 'hello world', desc: 'hehe description' })}
 			>Title = Hello World, + Desc</Button
 		>
 	</div>
 	<div>
 		<h2>Post list</h2>
-		{#if $colStore === undefined}
+		{#if colStore.collection === undefined || colStore.collection === null}
 			loading...
 		{:else}
-			{#each $colStore as post}
+			{#each colStore.collection as post}
 				<div>
 					<h3>
 						{post.title}
 					</h3>
 					{post.desc || 'no desc'}
 				</div>
-				<Button on:click={() => colStore.remove(post.id)}>Remove this</Button>
+				<Button onclick={() => colStore.remove(post.id)}>Remove this</Button>
 			{/each}
 		{/if}
 	</div>
 
 	<Button
-		on:click={() => {
+		onclick={() => {
 			const id = Math.random().toString(36);
 			colStore.add(id, {
 				id,
 				title: `Hey new post ${id}`,
-				desc: 'yooo'
+				desc: 'yooo',
 			});
 		}}>New Post</Button
 	>
 
 	<div>
 		<h2>Node</h2>
-		{#if $node === undefined}
+		{#if node.node === undefined}
 			loading...
 		{:else}
-			{JSON.stringify($node)}
+			{JSON.stringify(node.node)}
 		{/if}
 	</div>
 
 	<div class="flex gap-4">
 		<Button
-			on:click={() => {
-				node.set(null);
+			onclick={() => {
+				node.set({});
 			}}
 		>
 			Remove message
 		</Button>
 		<Button
-			on:click={() => {
+			onclick={() => {
 				node.set({
 					id: '123',
-					message: 'hey'
+					message: 'hey',
 				});
 			}}
 		>

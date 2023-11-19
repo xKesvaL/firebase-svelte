@@ -9,7 +9,7 @@ import {
 	getString,
 	getValue,
 	isSupported,
-	type RemoteConfig
+	type RemoteConfig,
 } from 'firebase/remote-config';
 
 export interface RemoteConfigStoreOptions<T> extends Omit<StoreOptions, 'once'> {
@@ -29,7 +29,7 @@ export interface RemoteConfigStore<T> extends Readable<T> {
  */
 function fallback<T>(
 	remoteConfig: RemoteConfig,
-	options: RemoteConfigStoreOptions<T> = {}
+	options: RemoteConfigStoreOptions<T> = {},
 ): RemoteConfigStore<T> | void {
 	if (!remoteConfig) {
 		const { subscribe } = readable<T>(options.startValue);
@@ -40,7 +40,7 @@ function fallback<T>(
 			},
 			get loading() {
 				return false;
-			}
+			},
 		};
 
 		if (!globalThis.window) {
@@ -59,7 +59,7 @@ function fallback<T>(
  * @returns {RemoteConfigStore<boolean | undefined>} a store with the remote config activation status
  */
 export function createRemoteConfigActivationStore(
-	remoteConfig: RemoteConfig
+	remoteConfig: RemoteConfig,
 ): RemoteConfigStore<boolean | undefined> {
 	const fallbackStore = fallback<boolean | undefined>(remoteConfig);
 
@@ -93,7 +93,7 @@ export function createRemoteConfigActivationStore(
 		},
 		get loading() {
 			return loading;
-		}
+		},
 	};
 }
 
@@ -107,7 +107,7 @@ export function createRemoteConfigActivationStore(
 export function createRemoteConfigValueStore<T = unknown>(
 	remoteConfig: RemoteConfig,
 	key: string,
-	options: RemoteConfigStoreOptions<T> = {}
+	options: RemoteConfigStoreOptions<T> = {},
 ): RemoteConfigStore<T> {
 	const fallbackStore = fallback<T>(remoteConfig, options);
 
@@ -129,7 +129,7 @@ export function createRemoteConfigValueStore<T = unknown>(
 		},
 		get loading() {
 			return loading;
-		}
+		},
 	};
 }
 
@@ -143,7 +143,7 @@ export function createRemoteConfigValueStore<T = unknown>(
 export function createRemoteConfigBooleanStore(
 	remoteConfig: RemoteConfig,
 	key: string,
-	options: RemoteConfigStoreOptions<boolean> = {}
+	options: RemoteConfigStoreOptions<boolean> = {},
 ): RemoteConfigStore<boolean> {
 	const fallbackStore = fallback<boolean>(remoteConfig, options);
 
@@ -165,7 +165,7 @@ export function createRemoteConfigBooleanStore(
 		},
 		get loading() {
 			return loading;
-		}
+		},
 	};
 }
 
@@ -179,7 +179,7 @@ export function createRemoteConfigBooleanStore(
 export function createRemoteConfigNumberStore(
 	remoteConfig: RemoteConfig,
 	key: string,
-	options: RemoteConfigStoreOptions<number> = {}
+	options: RemoteConfigStoreOptions<number> = {},
 ): RemoteConfigStore<number> {
 	const fallbackStore = fallback<number>(remoteConfig, options);
 
@@ -201,7 +201,7 @@ export function createRemoteConfigNumberStore(
 		},
 		get loading() {
 			return loading;
-		}
+		},
 	};
 }
 
@@ -215,7 +215,7 @@ export function createRemoteConfigNumberStore(
 export function createRemoteConfigStringStore(
 	remoteConfig: RemoteConfig,
 	key: string,
-	options: RemoteConfigStoreOptions<string> = {}
+	options: RemoteConfigStoreOptions<string> = {},
 ): RemoteConfigStore<string> {
 	const fallbackStore = fallback<string>(remoteConfig, options);
 
@@ -237,6 +237,6 @@ export function createRemoteConfigStringStore(
 		},
 		get loading() {
 			return loading;
-		}
+		},
 	};
 }

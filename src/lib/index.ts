@@ -13,7 +13,7 @@ import CollectionGroup from '$lib/firestore/CollectionGroup.svelte';
 import {
 	createDocStore,
 	createCollectionStore,
-	createCollectionGroupStore
+	createCollectionGroupStore,
 } from '$lib/firestore/stores.js';
 
 // rtdb
@@ -32,7 +32,7 @@ import {
 	createRemoteConfigBooleanStore,
 	createRemoteConfigNumberStore,
 	createRemoteConfigStringStore,
-	createRemoteConfigValueStore
+	createRemoteConfigValueStore,
 } from '$lib/remoteConfig/stores.js';
 
 // cloud storage
@@ -42,8 +42,28 @@ import UploadTask from '$lib/storage/UploadTask.svelte';
 import {
 	createStorageListStore,
 	createDownloadUrlStore,
-	createUploadTaskStore
+	createUploadTaskStore,
 } from '$lib/storage/stores.js';
+
+///////////////////////////////////////
+///////////////////////////////////////
+//////////
+//////////   ! SVELTE 5
+//////////
+///////////////////////////////////////
+///////////////////////////////////////
+
+import { UserState } from './auth/classes.svelte';
+import { DocState, CollectionState, CollectionGroupState } from './firestore/classes.svelte';
+import { NodeState, NodeListState } from './realtime/classes.svelte';
+import {
+	RemoteConfigActivationState,
+	RemoteConfigBooleanState,
+	RemoteConfigNumberState,
+	RemoteConfigStringState,
+	RemoteConfigValueState,
+} from './remoteConfig/classes.svelte';
+import { DownloadUrlState, StorageListState, UploadTaskState } from './storage/classes.svelte';
 
 export {
 	// SDK Context
@@ -90,5 +110,36 @@ export {
 	// Cloud Storage,
 	DownloadUrl,
 	StorageList,
-	UploadTask
+	UploadTask,
+
+	///////////////////////////////////////
+	///////////////////////////////////////
+	//////////
+	//////////  ! SVELTE 5
+	//////////
+	///////////////////////////////////////
+	///////////////////////////////////////
+	// User States
+	UserState,
+
+	// Firestore States
+	DocState,
+	CollectionState,
+	CollectionGroupState,
+
+	// Realtime States
+	NodeState,
+	NodeListState,
+
+	// Remote Config States
+	RemoteConfigActivationState,
+	RemoteConfigBooleanState,
+	RemoteConfigNumberState,
+	RemoteConfigStringState,
+	RemoteConfigValueState,
+
+	// Cloud Storage States
+	DownloadUrlState,
+	StorageListState,
+	UploadTaskState,
 };

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from "$docs/ui/utils.js";
-	import { badgeVariants, type Variant } from ".";
+	import { badgeVariants, type Variant } from "./index.svelte";
 
 	let className: string | undefined | null = undefined;
 	export let href: string | undefined = undefined;

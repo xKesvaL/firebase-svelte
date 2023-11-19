@@ -1,6 +1,6 @@
 <script>
 	import Code from '$docs/components/Code.svelte';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Firebase App Context | Firebase Svelte`;
 	const description = `The Firebase Context provides methods to access the Firebase SDKs directly.`;

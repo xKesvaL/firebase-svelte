@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Remote Config Component | Firebase Svelte`;
 	const description = `The <RemoteConfig> component is a component that renders different content depending on the data in a remote config and gives you access to the remote config instance.`;

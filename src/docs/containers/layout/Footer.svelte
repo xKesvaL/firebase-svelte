@@ -1,6 +1,6 @@
 <script lang="ts">
 	import IconBrandGithub from '$docs/icons/IconBrandGithub.svelte';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 </script>
 
 <footer class="container flex flex-col items-center justify-center gap-4 lg:flex-row">

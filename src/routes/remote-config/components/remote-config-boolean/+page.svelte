@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Remote Config Boolean Component | Firebase Svelte`;
 	const description = `The <RemoteConfigBoolean> component is a component that renders different content depending on the data in a remote config boolean value and gives you access to the remote config instance.`;

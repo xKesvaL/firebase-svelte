@@ -1,6 +1,6 @@
 <script>
 	import { ROUTES } from '$docs/config';
-	import { Button } from '$docs/ui/button';
+	import { Button } from '$docs/ui/button/index.svelte';
 
 	const title = `Collection Component | Firebase Svelte`;
 	const description = `The <Collection> component is a component that renders different content depending on the data in a collection and gives you access to the collection reference.`;
