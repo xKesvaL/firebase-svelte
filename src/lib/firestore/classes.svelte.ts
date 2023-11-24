@@ -92,6 +92,10 @@ export class DocState<T = Record<string, unknown>> extends DefaultFirestoreState
 
 			if (this.options.once) {
 				this.unsubscribe();
+			} else {
+				$effect(() => {
+					return () => this.unsubscribe();
+				});
 			}
 		} else {
 			this.noSdk({ sdk: 'firestore', className: 'DocState' });
@@ -193,6 +197,10 @@ export class CollectionState<T = Record<string, unknown>> extends DefaultFiresto
 
 			if (this.options.once) {
 				this.unsubscribe();
+			} else {
+				$effect(() => {
+					return () => this.unsubscribe();
+				});
 			}
 		} else {
 			this.noSdk({ sdk: 'firestore', className: 'CollectionState' });
@@ -260,6 +268,10 @@ export class CollectionGroupState<T = Record<string, unknown>> extends DefaultFi
 
 			if (this.options.once) {
 				this.unsubscribe();
+			} else {
+				$effect(() => {
+					return () => this.unsubscribe();
+				});
 			}
 		} else {
 			this.noSdk({ sdk: 'firestore', className: 'CollectionGroupState' });

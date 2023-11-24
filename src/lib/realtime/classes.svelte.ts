@@ -82,6 +82,10 @@ export class NodeState<T = Record<string, unknown>> extends DefaultRealtimeState
 
 			if (this.options.once) {
 				this.unsubscribe();
+			} else {
+				$effect(() => {
+					return () => this.unsubscribe();
+				});
 			}
 		} else {
 			this.noSdk({ sdk: 'realtimedb', className: 'NodeState' });
@@ -174,6 +178,10 @@ export class NodeListState<T = Record<string, unknown>> extends DefaultRealtimeS
 
 			if (this.options.once) {
 				this.unsubscribe();
+			} else {
+				$effect(() => {
+					return () => this.unsubscribe();
+				});
 			}
 		} else {
 			this.noSdk({ sdk: 'realtimedb', className: 'NodeListState' });

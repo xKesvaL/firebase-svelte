@@ -157,6 +157,10 @@ export class UploadTaskState extends DefaultState {
 					this.loading = false;
 				},
 			);
+
+			$effect(() => {
+				return () => this.unsubscribe();
+			});
 		} else {
 			this.noSdk({ sdk: 'storage', className: 'UploadTaskState' });
 		}

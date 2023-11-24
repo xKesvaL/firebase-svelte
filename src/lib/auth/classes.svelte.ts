@@ -9,7 +9,7 @@ export class UserState extends DefaultState {
 
 	/**
 	 * Creates a new UserState instance.
-	 * @param firebaseAuth - The Firebase Auth instance.
+	 * @param {Auth} firebaseAuth - The Firebase Auth instance.
 	 * @link https://firebase-svelte.vercel.app/auth/states/user
 	 */
 	public constructor(firebaseAuth?: Auth) {
@@ -24,6 +24,10 @@ export class UserState extends DefaultState {
 			this.unsubscribe = this.auth.onAuthStateChanged((user) => {
 				this.user = user;
 				this.loading = false;
+			});
+
+			$effect(() => {
+				return () => this.unsubscribe();
 			});
 		} else {
 			this.noSdk({ sdk: 'auth', className: 'UserState' });
